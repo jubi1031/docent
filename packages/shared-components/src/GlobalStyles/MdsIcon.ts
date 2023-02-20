@@ -1,0 +1,96 @@
+import {
+  css
+} from 'styled-components'
+
+const MdsIcon = css`
+  [class^="mds-icon"]::before,
+  [class*=" mds-icon"]::before {font-family:icon; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+  .mds-icon--add-post::before{content:"\\e800";}
+  .mds-icon--book::before{content:"\\e801";}
+  .mds-icon--add-shelf::before{content:"\\e802";}
+  .mds-icon--arrow-bottom::before{content:"\\e803";}
+  .mds-icon--arrow-left::before{content:"\\e804";}
+  .mds-icon--arrow-right::before{content:"\\e805";}
+  .mds-icon--arrow-top::before{content:"\\e806";}
+  .mds-icon--arrow2-left::before{content:"\\e807";}
+  .mds-icon--arrow2-right::before{content:"\\e808";}
+  .mds-icon--book-open::before{content:"\\e809";}
+  .mds-icon--book-plus::before{content:"\\e80a";}
+  .mds-icon--books-arrow::before{content:"\\e80b";}
+  .mds-icon--books::before{content:"\\e80c";}
+  .mds-icon--camera::before{content:"\\e80d";}
+  .mds-icon--clap-24-2::before{content:"\\e80e";}
+  .mds-icon--comment::before{content:"\\e80f";}
+  .mds-icon--crown::before{content:"\\e810";}
+  .mds-icon--delivering::before{content:"\\e811";}
+  .mds-icon--delivery-done::before{content:"\\e812";}
+  .mds-icon--delivery-exchange::before{content:"\\e813";}
+  .mds-icon--delivery-hand::before{content:"\\e814";}
+  .mds-icon--delivery-put::before{content:"\\e815";}
+  .mds-icon--delivery-refund::before{content:"\\e816";}
+  .mds-icon--download-fail::before{content:"\\e817";}
+  .mds-icon--download-success::before{content:"\\e818";}
+  .mds-icon--download::before{content:"\\e819";}
+  .mds-icon--downloaded-indesktop::before{content:"\\e81a";}
+  .mds-icon--filter::before{content:"\\e81b";}
+  .mds-icon--fullscreen-end::before{content:"\\e81c";}
+  .mds-icon--fullscreen-start::before{content:"\\e81d";}
+  .mds-icon--alert-filled::before{content:"\\e81e";}
+  .mds-icon--headphone::before{content:"\\e81f";}
+  .mds-icon--heart-1::before{content:"\\e820";}
+  .mds-icon--heart::before{content:"\\e821";}
+  .mds-icon--highlight::before{content:"\\e822";}
+  .mds-icon--check::before{content:"\\e823";}
+  .mds-icon--minus::before{content:"\\e824";}
+  .mds-icon--plus::before{content:"\\e825";}
+  .mds-icon--x::before{content:"\\e826";}
+  .mds-icon--setting::before{content:"\\e827";}
+  .mds-icon--import::before{content:"\\e828";}
+  .mds-icon--link::before{content:"\\e829";}
+  .mds-icon--list::before{content:"\\e82a";}
+  .mds-icon--lock::before{content:"\\e82b";}
+  .mds-icon--down-filled::before{content:"\\e82c";}
+  .mds-icon--mov::before{content:"\\e82d";}
+  .mds-icon--pay-autorenew::before{content:"\\e82e";}
+  .mds-icon--pay-cancel::before{content:"\\e82f";}
+  .mds-icon--pay-cancle-reservate::before{content:"\\e830";}
+  .mds-icon--pay-done::before{content:"\\e831";}
+  .mds-icon--pen::before{content:"\\e832";}
+  .mds-icon--picture::before{content:"\\e833";}
+  .mds-icon--post::before{content:"\\e834";}
+  .mds-icon--profile::before{content:"\\e835";}
+  .mds-icon--refresh::before{content:"\\e836";}
+  .mds-icon--report::before{content:"\\e837";}
+  .mds-icon--review::before{content:"\\e838";}
+  .mds-icon--routine::before{content:"\\e839";}
+  .mds-icon--searchbar::before{content:"\\e83a";}
+  .mds-icon--share::before{content:"\\e83b";}
+  .mds-icon--shelf::before{content:"\\e83c";}
+  .mds-icon--siren::before{content:"\\e83d";}
+  .mds-icon--sound-mute::before{content:"\\e83e";}
+  .mds-icon--sound-volume::before{content:"\\e83f";}
+  .mds-icon--sound::before{content:"\\e840";}
+  .mds-icon--star::before{content:"\\e841";}
+  .mds-icon--statistics-book::before{content:"\\e842";}
+  .mds-icon--up-filled::before{content:"\\e843";}
+  .mds-icon--statistics-time::before{content:"\\e844";}
+  .mds-icon--thumbs-down::before{content:"\\e846";}
+  .mds-icon--thumbs-up::before{content:"\\e847";}
+  .mds-icon--trash::before{content:"\\e848";}
+  .mds-icon--trophy::before{content:"\\e849";}
+  .mds-icon--unlock::before{content:"\\e84a";}
+  .mds-icon--video::before{content:"\\e84b";}
+  .mds-icon--viewer-list::before{content:"\\e84c";}
+  .mds-icon--more-24-1::before{content:"\\e84d";}
+  .mds-icon--input-delete::before{content:"\\e84e";}
+  .mds-icon--statistics-routine::before{content:"\\e850";}
+  .mds-icon--info::before{content:"\\e851";}
+  .mds-icon--question-mark::before{content:"\\e852";}
+  .mds-icon--text-24-1::before{content:"\\e853";}
+
+  .mds-icon--gnb_search::before{content:"\\e854";}
+  .mds-icon--sync-2::before{content:"\\e855";}
+  .mds-icon--alarm-2::before{content:"\\e856";}
+`
+
+export default MdsIcon

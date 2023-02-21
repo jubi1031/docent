@@ -1,5 +1,5 @@
 /// <reference types="react" />
-declare type BGMProps = {
+type BGMProps = {
     currentPage: number;
 };
 declare const BGM: ({ currentPage }: BGMProps) => JSX.Element;

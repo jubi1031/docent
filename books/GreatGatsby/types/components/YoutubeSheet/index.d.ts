@@ -1,5 +1,5 @@
 /// <reference types="react" />
-declare type YoutubeSheetProps = {
+type YoutubeSheetProps = {
     currentPage: number;
 };
 declare const YoutubeSheet: ({ currentPage }: YoutubeSheetProps) => JSX.Element;

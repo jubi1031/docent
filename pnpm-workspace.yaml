@@ -1,4 +1,5 @@
 packages:
   - books/DollarGut
-  - packages/*
+  - books/GreatGatsby
+  - packages/**/*
   - reader/**

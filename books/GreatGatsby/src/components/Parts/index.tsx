@@ -37,7 +37,7 @@ const Parts = () => {
       { title: '작품의 메시지: ‘위대한’ 개츠비와 아메리칸 드림', page: 131, depth: 2 }
     ])
 
-    iframeMessage.post('coverPath', '/images/opening/cover.jpeg')
+    iframeMessage.post('coverPath', '/images/opening/cover.png')
     iframeMessage.post('totalPage', swiperRef.current.slides.length - 1)
   }, [])
 

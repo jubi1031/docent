@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-declare type ParagraphProps = {
+type ParagraphProps = {
     children: ReactNode;
 };
 declare const Paragraph: {

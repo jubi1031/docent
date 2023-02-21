@@ -1,4 +1,5 @@
-declare type GaugeProps = {
+/// <reference types="react" />
+type GaugeProps = {
     value: number;
     max: number;
     tootip: boolean;

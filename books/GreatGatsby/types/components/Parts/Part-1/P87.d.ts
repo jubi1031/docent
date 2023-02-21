@@ -1,5 +1,5 @@
 import React from 'react';
-declare type P87Props = {
+type P87Props = {
     isCurrentPage?: boolean;
     ref?: React.Ref<HTMLDivElement>;
 };

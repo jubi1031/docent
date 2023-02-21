@@ -1,5 +1,5 @@
 /// <reference types="react" />
-declare type P13Props = {
+type P13Props = {
     isCurrentPage: boolean;
 };
 declare const P13: ({ isCurrentPage }: P13Props) => JSX.Element;

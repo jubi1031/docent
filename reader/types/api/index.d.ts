@@ -1,4 +1,4 @@
-declare type RequestProps = {
+type RequestProps = {
     url: string;
     method?: string;
     headers?: {

@@ -1,11 +1,11 @@
 /// <reference types="react" />
-declare type Chapter = {
+type Chapter = {
     title: string;
     page: number;
     depth: number;
 };
-declare type Chapters = Chapter[];
-declare type NavigationProps = {
+type Chapters = Chapter[];
+type NavigationProps = {
     isOpen: boolean;
     chapters: Chapters;
     coverPath: string;

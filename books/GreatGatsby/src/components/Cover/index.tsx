@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const Cover = () => {
   return (
     <Wrapper>
-      <img src="/images/opening/cover.jpeg" alt="" />
+      <img src="/images/opening/cover.png" alt="" />
     </Wrapper>
   )
 }

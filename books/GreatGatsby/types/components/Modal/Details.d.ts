@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-declare type DetailsProps = {
+type DetailsProps = {
     children: ReactNode;
 };
 declare const Details: ({ children }: DetailsProps) => JSX.Element;

@@ -1,5 +1,5 @@
 /// <reference types="react" />
-declare type FixedButtonProps = {
+type FixedButtonProps = {
     disabled: boolean;
     onClick?: (event: React.MouseEvent) => void;
 };

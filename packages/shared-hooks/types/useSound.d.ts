@@ -5,7 +5,7 @@ interface SoundProps {
     loop?: boolean;
     volume?: number;
 }
-export declare type ReturnedValue = [
+export type ReturnedValue = [
     Howl | null,
     {
         play: () => void;

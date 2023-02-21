@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-declare type AppbarProps = {
+type AppbarProps = {
     isOpen: boolean;
     leading?: ReactNode;
     title?: ReactNode;

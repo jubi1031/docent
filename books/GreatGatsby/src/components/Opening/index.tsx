@@ -50,8 +50,8 @@ const Opening = ({
       <Intro>
         <Header>
           <Inner>
-            <Number>#1</Number>
-            <Title>위대한 개츠비</Title>
+            <Number>#2</Number>
+            <Title>달러구트 꿈 백화점</Title>
             <Writer>
               <KoName onClick={(event) => {
                 event.stopPropagation()
@@ -60,16 +60,16 @@ const Opening = ({
 
                 setOpenModal(true)
               }}>
-                김봉중 <InfoIcon />
+                양재웅 ㆍ 김해나 <InfoIcon />
                 <Tooltip inVisible={isOpenModalCount.current > 0}>도슨트 소개 보기</Tooltip>
               </KoName>
               <EnName onClick={(event) => {
                 event.stopPropagation()
                 setOpenModal(true)
-              }}>Kim bong joong</EnName>
+              }}>전문의 &nbsp; &nbsp; &nbsp; &nbsp; 아나운서</EnName>
             </Writer>
             <Book>
-              <img src="/images/opening/cover.jpeg" alt="" />
+              <img src="/images/opening/cover.png" alt="" />
             </Book>
           </Inner>
         </Header>
@@ -81,20 +81,32 @@ const Opening = ({
             >
               <SwiperSlide>
                 <Paragraph>
-                  <TextDecoration><Quote>“&nbsp;</Quote>안녕하세요. 밀리의 서재 도슨트북</TextDecoration>
-                  <TextDecoration>첫 번째 시리즈의 도슨트, <strong>김봉중</strong>입니다.</TextDecoration>
-                  <TextDecoration>오늘 저희가 함께 읽어볼 책은</TextDecoration>
-                  <TextDecoration>스콧 피츠 제럴드 작가의</TextDecoration>
-                  <TextDecoration><strong>&lt;위대한 개츠비&gt;</strong> 입니다.<Quote>&nbsp;”</Quote></TextDecoration>
+                  <TextDecoration><Quote>“&nbsp;</Quote>작품의 주요 스토리는 물론</TextDecoration>
+                  <TextDecoration>책에 대한 신선한 해설을 들려드리는</TextDecoration>
+                  <TextDecoration><strong>밀리의 서재 도슨트북</strong></TextDecoration>
+                  <TextDecoration>안녕하세요. 아나운서 김해나입니다.</TextDecoration>
+                  <TextDecoration>오늘은 남녀노소 불문하고</TextDecoration>
+                  <TextDecoration>꾸준한 사랑을 받는 소설 분야 베스트셀러<Quote>&nbsp;”</Quote></TextDecoration>
                 </Paragraph>
               </SwiperSlide>
               <SwiperSlide>
                 <Paragraph>
-                  <TextDecoration><Quote>“&nbsp;</Quote>도슨트북은 파트 1, 2로 나뉘어 있습니다.</TextDecoration>
-                  <TextDecoration><strong>파트 1</strong>에서는 책의 내용을</TextDecoration>
-                  <TextDecoration>흥미롭게 요약한 스토리가,</TextDecoration>
-                  <TextDecoration><strong>파트 2</strong>에서는 책에 대한</TextDecoration>
-                  <TextDecoration>저만의 해설이 진행됩니다.<Quote>&nbsp;”</Quote></TextDecoration>
+                  <TextDecoration><Quote>“&nbsp;</Quote><strong>&lt;달러구트 꿈 백화점&gt;</strong>에 대해</TextDecoration>
+                  <TextDecoration>재미있는 해설을 펼쳐볼 건데요.</TextDecoration>
+                  <TextDecoration>오늘은 색다른 시각으로</TextDecoration>
+                  <TextDecoration>소개해 주실 도슨트로 정신과 전문의</TextDecoration>
+                  <TextDecoration>양재웅 선생님과 함께합니다<Quote>&nbsp;”</Quote></TextDecoration>
+                  <TextDecoration>&nbsp;</TextDecoration>
+                </Paragraph>
+              </SwiperSlide>
+              <SwiperSlide>
+                <Paragraph>
+                  <TextDecoration><Quote>“&nbsp;</Quote>도슨트북은 각각의 파트로</TextDecoration>
+                  <TextDecoration>나뉘어 진행됩니다.</TextDecoration>
+                  <TextDecoration>파트1 에서는 책의 내용을</TextDecoration>
+                  <TextDecoration>흥미롭게 <strong>요약한 스토리</strong>가</TextDecoration>
+                  <TextDecoration>파트2 에서는 책에 대한</TextDecoration>
+                  <TextDecoration><strong>색다른 해설</strong>이 진행됩니다.<Quote>&nbsp;”</Quote></TextDecoration>
                 </Paragraph>
               </SwiperSlide>
             </Swiper>
@@ -157,7 +169,7 @@ const Header = styled.div`
   padding-top: 83.73%;
   height: 0;
   /* height: 314px; */
-  background-image: url(/images/opening/intro-bg.jpeg);
+  background-image: url(/images/opening/intro-bg.jpg);
   background-position: 0 0;
   background-repeat: no-repeat;
   background-size: cover;
@@ -213,7 +225,7 @@ const EnName = styled.span`
   ${clamp('line-height', [MIN_VIEWPORT, MAX_VIEWPORT, 18])};
 `
 
-const Tooltip = styled(motion.span)<{ inVisible: boolean }>`
+const Tooltip = styled(motion.span) <{ inVisible: boolean }>`
   ${({ inVisible }) => inVisible ? 'display: none' : ''};
   position: absolute;
   left: calc(100% - 21px);

@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
-declare type CharacterProps = {
+type CharacterProps = {
     children?: ReactNode;
 };
-declare type NameProps = {
+type NameProps = {
     children?: ReactNode;
 };
-declare type TextProps = {
+type TextProps = {
     children?: ReactNode;
 };
 declare const Character: {

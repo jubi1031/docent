@@ -2,7 +2,7 @@
  * 아직 콘텐츠가 하나라 모르지만 packages/shared-components로 옮겨질 가능성 농후..
  */
 import React, { ReactNode } from 'react';
-declare type ModalProps = {
+type ModalProps = {
     children?: ReactNode;
     isVisible?: boolean;
     onClose?: () => void;

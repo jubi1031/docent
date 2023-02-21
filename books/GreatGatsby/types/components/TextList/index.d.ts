@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
-declare type CheckListProps = {
+type CheckListProps = {
     label?: string;
     children: ReactNode;
 };
-declare type CheckItemProps = {
+type CheckItemProps = {
     children: ReactNode;
     onChange?: (checked: boolean) => void;
 };

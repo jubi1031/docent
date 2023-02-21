@@ -1,14 +1,14 @@
 import { ReactNode } from 'react';
-declare type CommentaryProps = {
+type CommentaryProps = {
     children?: ReactNode;
 };
-declare type CommentaryHeaderProps = {
+type CommentaryHeaderProps = {
     children?: ReactNode;
 };
-declare type CommentaryBodyProps = {
+type CommentaryBodyProps = {
     children?: ReactNode;
 };
-declare type CommentaryFeaturesProps = {
+type CommentaryFeaturesProps = {
     src: string;
     isCover?: boolean;
 };

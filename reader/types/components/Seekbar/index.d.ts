@@ -1,5 +1,5 @@
 /// <reference types="react" />
-declare type SeekbarProps = {
+type SeekbarProps = {
     isOpen: boolean;
     value: number;
     max: number;

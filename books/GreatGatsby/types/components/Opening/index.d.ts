@@ -1,4 +1,4 @@
 /// <reference types="react" />
-declare type OpeningProps = {};
+type OpeningProps = {};
 declare const Opening: ({}: OpeningProps) => JSX.Element;
 export default Opening;

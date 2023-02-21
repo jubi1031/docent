@@ -30,13 +30,13 @@ global.loadDocentView = async ({
   if (mode !== 'dev') {
     // api config
     config.sessionId = sessionId
-    
+
     try {
       const { history } = await getHistory({ bookSeq }) as { history: [{ location: '' }] }
       if (history.length) {
         initialPage = Number(history[0].location) - 1
       }
-    } catch {}
+    } catch { }
   }
 
   ReactDOM

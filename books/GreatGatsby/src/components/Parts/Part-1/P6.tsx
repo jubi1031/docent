@@ -13,10 +13,9 @@ type P6Props = {
 }
 
 const checkItems = [
-  '프로 골프선수',
-  '항상 자신감 넘치는 태도와 쿨한 성격',
-  '데이지와 친한 친구 사이로, 그녀의 결혼 생활 이면에 대해 잘 알고 있음',
-  '닉 캐러웨이에게 관심이 생기는 중'
+  '취업 준비생이자 주인공',
+  '주위 분위기 잘 파악, 눈치가 빠름',
+  '청산유수와도 같은 말솜씨'
 ]
 
 const P6 = ({
@@ -55,7 +54,7 @@ const P6 = ({
       >
         <Modal.Features>
           <img src="/images/part1/P6_features.jpg" width="44%" alt="" />
-          <strong>조던 베이커</strong>
+          <strong>페니</strong>
         </Modal.Features>
         <Modal.Details>
           <CheckList>

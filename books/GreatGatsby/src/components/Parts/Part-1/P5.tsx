@@ -101,8 +101,6 @@ const Dissolve = styled.div`
     max-height: 100vh;
     @media (max-height: 480px) {
       max-height: unset;
-      top: 0;
-      transform: translate(-50%, 0);
     }
   }
 `

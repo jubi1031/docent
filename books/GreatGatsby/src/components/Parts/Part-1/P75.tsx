@@ -4,62 +4,77 @@ import { motion } from 'framer-motion'
 
 import Icons from '../../Icons'
 
-type P29Props = {
+type P75Props = {
   isCurrentPage: boolean
 }
 
-const P29 = ({
+const P75 = ({
   isCurrentPage
-}: P29Props) => {
+}: P75Props) => {
   const [step, setStep] = useState(0)
-  const isShow = isCurrentPage && step < 1
+  const isShow1 = isCurrentPage && step < 1
+  const isShow2 = isCurrentPage && step === 1
+  const isShow3 = isCurrentPage && step > 1
 
   return (
-    <Wrapper className={step > 0 ? 'cracked' : ''}>
-      <Images
-        variants={{
-          fadeOut: { opacity: 0, scale: 1.2 }
-        }}
-        transition={{ type: 'spring', duration: .6, delay: .4 }}
-        animate={step > 0 ? 'fadeOut' : ''}
-      >
-        <Img src="/images/part1/P75_1.jpg" alt="" />
-        <Img src="/images/part1/P75_1.jpg" alt="" />
-        <Img src="/images/part1/P75_1.jpg" alt="" />
-        {isShow && (
+    <Wrapper>
+      <Imgs>
+        <Img src="/images/part1/P75_1.jpg" style={{ opacity: step >= 0 ? 1 : 0 }} alt="" />
+        <Img src="/images/part1/P75_2.jpg" style={{ opacity: step >= 1 ? 1 : 0 }} alt="" />
+        <Img src="/images/part1/P75_3.jpg" style={{ opacity: step >= 2 ? 1 : 0 }} alt="" />
+        <Img src="/images/part1/P75_4.jpg" style={{ opacity: step >= 3 ? 1 : 0 }} alt="" />
+        <SizeImg src="/images/part1/P75_4.jpg" />
+        {isShow1 && (
           <Button
-            initial={{ opacity: 0, scale: 0.6, x: `-50%` }}
+            onClick={() => setStep(step + 1)}
+            initial={{ opacity: 0, scale: 0.6 }}
             transition={{ type: 'spring', duration: .36, delay: 0.2 }}
             animate={{ opacity: 1, scale: 1 }}
-            onClick={() => setStep(step + 1)}
+            style={{
+              left: '30.4%',
+              top: '41%'
+            }}
           >
             <Icons.Bulb />
           </Button>
         )}
-        <SizeImg src="/images/part1/P75_1.jpg" />
-      </Images>
-      <Img
-        src="/images/part1/P75_2.jpg" alt=""
-        initial={{ opacity: 0, x: '-50%' }}
-        variants={{
-          fadeIn: { opacity: 1, x: '-50%' }
-        }}
-        transition={{ type: 'spring', duration: 1.2, delay: .4 }}
-        animate={step > 0 ? 'fadeIn' : ''}
-      />
+        {isShow2 && (
+          <Button
+            onClick={() => setStep(step + 1)}
+            initial={{ opacity: 0, scale: 0.6 }}
+            transition={{ type: 'spring', duration: .36, delay: 0.3 }}
+            animate={{ opacity: 1, scale: 1 }}
+            style={{
+              left: '60%',
+              top: '53.94%'
+            }}
+          >
+            <Icons.Bulb />
+          </Button>
+        )}
+        {isShow3 && (
+          <Button
+            initial={{ opacity: 0, scale: 0.6 }}
+            transition={{ type: 'spring', duration: .36, delay: 0.3 }}
+            animate={{ opacity: 1, scale: 1 }}
+            onClick={() => setStep(step + 1)}
+            style={{
+              left: '70%',
+              top: '53.94%'
+            }}
+          >
+            <Icons.Bulb />
+          </Button>
+        )}
+      </Imgs>
     </Wrapper>
   )
 }
 
 const Wrapper = styled.div`
   position: relative;
-  width: 100%;
-  height: 100%;
   text-align: center;
-  overflow: hidden;
-  @media (max-height: 480px) {
-    overflow: auto;
-  }
+  height: 100%;
   img {
     display: block;
     margin: 0 auto;
@@ -67,44 +82,23 @@ const Wrapper = styled.div`
     @media (max-height: 480px) {
       max-height: unset;
     }
-  }  
+  }
 `
 
-const Images = styled(motion.div)`
+const Imgs = styled.div`
   position: relative;
-  img {
-    transition-duration: .6s;
-    transition-delay: 0s;
-    transition: transform .24s;
-  }
+  display: inline-flex;
+  vertical-align: top;
 `
 
-const Img = styled(motion.img)`
-  position: absolute;
-  left: 50%;
-  top: 0;
-  transform: translate(-50%, 0);
-  pointer-events: none;
-  transition: none;
-  max-height: 100vh;
-  @media (max-height: 480px) {
-    max-height: unset;
-  }
-
-  .cracked ${Images} & {
-    &:nth-child(1) {
-      clip-path: polygon(19% 28%, 0 25%, 0 64%, 17% 66%);
-      transform: translate(-52%, -1%) rotateZ(-4deg);
-    }
-    &:nth-child(2) {
-      clip-path: polygon(21% 28%, 64% 25%, 47% 64%, 19% 63%);
-      transform: translate(-45%, -1%) rotateZ(4deg);
-    }
-    &:nth-child(3) {
-      clip-path: polygon(100% 28%, 64% 25%, 47% 64%, 100% 61%);
-      transform: translate(-45%, -1%) rotateZ(6deg);
-    }
-  }
+const Img = styled.img`
+ position: absolute;
+ left: 50%;
+ top: 0;
+ height: 100%;
+ transform: translate(-50%, 0);
+ transition-duration: .6s;
+ transition-delay: 0s;
 `
 
 const SizeImg = styled.img`
@@ -120,15 +114,13 @@ const Button = styled(motion.button)`
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 10.666%;
   width: 40px;
   height: 40px;
-  left: 50%;
-  top: 64%;
-  transform: translate(-50%, 0);
   border: 2px solid #EB683F;
   background: rgba(255, 255, 255, 0.85);
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16), 4px 8px 28px rgba(0, 0, 0, 0.08);
   border-radius: 50%;
 `
 
-export default P29
+export default P75

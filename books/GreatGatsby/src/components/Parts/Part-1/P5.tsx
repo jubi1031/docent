@@ -1,103 +1,97 @@
-
-import React, { ReactNode, useContext, useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Gauge } from '@shared/components'
-import { useSound } from '@shared/hooks'
+import Modal from '@/components/Modal'
+import CheckList from '../../CheckList'
+import { motion } from 'framer-motion'
 import { ConfigContext } from '@/components/ConfigContext'
-import { motion, AnimatePresence } from 'framer-motion'
+import Icons from '../../Icons'
+
+import FixedButton from '@/components/Modal/FixedButton'
 
 type P5Props = {
-  isCurrentPage?: boolean,
-  ref?: React.Ref<HTMLDivElement>
+  isCurrentPage: boolean
 }
 
+const checkItems = [
+  '취업 준비생이자 주인공',
+  '주위 분위기 잘 파악, 눈치가 빠름',
+  '청산유수와도 같은 말솜씨'
+]
+
 const P5 = ({
-  isCurrentPage,
-  ref
+  isCurrentPage
 }: P5Props) => {
-  const { currentPage, gaugeTutorialClearRef } = useContext(ConfigContext)
-  const [value, setValue] = useState(0)
-  const effects = useRef({
-    lighter: false,
-    fire: false
-  })
-  const [, { play: lighterPlay, stop: lighterStop }] = useSound({ src: 'sounds/P5_lighter.mp3', volume: 1 })
-  const [, { play: firePlay, stop: fireStop }] = useSound({ src: 'sounds/P5_fire.mp3', volume: 1 })
+  const { openModal, setOpenModal } = useContext(ConfigContext)
+  const [tutorial, setTutorial] = useState(false)
+  const [fixedButtonDisabled, setFixedButtonDisabled] = useState(0)
 
   useEffect(() => {
-    const lighterEffect = (value / 50) > 0.8
-    if (lighterEffect) {
-      if (!effects.current.lighter) {
-        lighterPlay()
-      }
+    if (!openModal) {
+      setFixedButtonDisabled(0)
     }
-
-    const fireEffect = (value - 50) / 50 > 0.8
-    if (fireEffect) {
-      if (!effects.current.fire) {
-        firePlay()
-      }
-    } else {
-      fireStop()
-    }
-
-    effects.current.lighter = lighterEffect
-    effects.current.fire = fireEffect
-  }, [value])
-
-  useEffect(() => {
-    if (!isCurrentPage) {
-      lighterStop()
-      fireStop()
-    }
-  }, [currentPage])
+  }, [openModal])
 
   return (
-    <Wrapper ref={ref}>
-      <Dissolve>
-        <img src="/images/part1/P5_1.jpg" alt="" />
-        <img src="/images/part1/P5_2.jpg" alt="" style={{ opacity: Math.min((value / 50), 1) }} />
-        <img src="/images/part1/P5_3.jpg" alt="" style={{ opacity: Math.max((value - 50) / 50, 0) }} />
-      </Dissolve>
-      <AnimatePresence>
+    <Wrapper>
+      <Imgs>
+        <img src="/images/part1/P5.jpg" alt="" />
         {isCurrentPage && (
-          <Gauges
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            exit={{ opacity: 0, y: 40 }}
+          <Button
+            type="button"
+            onClick={() => setOpenModal(true)}
+            initial={{ opacity: 0, scale: 0.6 }}
+            transition={{ type: 'spring', duration: .36, delay: 0.2 }}
+            animate={{ opacity: 1, scale: 1 }}
           >
-            <Gauge
-              value={value}
-              tootip={gaugeTutorialClearRef.current}
-              max={100}
-              onChange={(value: number) => {
-                if (value === 100) {
-                  gaugeTutorialClearRef.current = true
-                }
-
-                setValue(value)
-              }}
-            />
-          </Gauges>
+            {tutorial ? <Icons.SearchCheck /> : <Icons.Search />}
+          </Button>
         )}
-      </AnimatePresence>
+      </Imgs>
+      <Modal
+        backdrop={'/images/part1/P5_features.jpg'}
+        isVisible={openModal}
+        onClose={() => setOpenModal(false)}
+      >
+        <Modal.Features>
+          <img src="/images/part1/P5_features.jpg" width="44%" alt="" />
+          <strong>페니</strong>
+        </Modal.Features>
+        <Modal.Details>
+          <CheckList>
+            {checkItems.map((text, i) => {
+              return (
+                <CheckList.Item
+                  key={i}
+                  onChange={(checked) => {
+                    const value = Math.max(checked ? fixedButtonDisabled + 1 : fixedButtonDisabled - 1, 0)
+                    setFixedButtonDisabled(value)
+                  }}
+                >
+                  {text}
+                </CheckList.Item>
+              )
+            })}
+          </CheckList>
+        </Modal.Details>
+        <FixedButton
+          disabled={fixedButtonDisabled < checkItems.length}
+          onClick={(event) => {
+            event.stopPropagation()
+            setOpenModal(false)
+            setTutorial(true)
+          }}
+        />
+      </Modal>
     </Wrapper>
   )
 }
 
 const Wrapper = styled.div`
   position: relative;
-  width: 100%;
-`
-
-const Dissolve = styled.div`
+  text-align: center;
   img {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    transition: opacity .1s;
+    display: block;
+    margin: 0 auto;
     max-height: 100vh;
     @media (max-height: 480px) {
       max-height: unset;
@@ -105,13 +99,25 @@ const Dissolve = styled.div`
   }
 `
 
-const Gauges = styled(motion.div)`
-  position: fixed;
-  bottom: 24px;
-  width: 100%;
-  .is-appbar-open & {
-    bottom: 127px;
-  }
+const Imgs = styled.div`
+  position: relative;
+  display: inline-flex;
+  vertical-align: top;
+`
+
+const Button = styled(motion.button)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 77.5%;
+  top: 19.5%;
+  border: 2px solid #A451F7;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16), 4px 8px 28px rgba(0, 0, 0, 0.08);
+  border-radius: 50%;
 `
 
 export default P5

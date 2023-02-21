@@ -1,7 +1,6 @@
-import React from 'react';
+/// <reference types="react" />
 type P5Props = {
-    isCurrentPage?: boolean;
-    ref?: React.Ref<HTMLDivElement>;
+    isCurrentPage: boolean;
 };
-declare const P5: ({ isCurrentPage, ref }: P5Props) => JSX.Element;
+declare const P5: ({ isCurrentPage }: P5Props) => JSX.Element;
 export default P5;

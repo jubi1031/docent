@@ -13,9 +13,11 @@ type P6Props = {
 }
 
 const checkItems = [
-  '취업 준비생이자 주인공',
-  '주위 분위기 잘 파악, 눈치가 빠름',
-  '청산유수와도 같은 말솜씨'
+  '시간의 신의 세 번째 제자 후손',
+  '엄청 고귀한 혈통',
+  '손님을 직접 응대하는 솔선수법 상사',
+  '백화점 다락방에서 살고 있음',
+  '은근히 워커홀릭'
 ]
 
 const P6 = ({
@@ -112,8 +114,8 @@ const Button = styled(motion.button)`
   width: 40px;
   height: 40px;
   position: absolute;
-  left: 60.53%;
-  top: 46.79%;
+  left: 35.5%;
+  top: 23.5%;
   border: 2px solid #A451F7;
   background: rgba(255, 255, 255, 0.85);
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16), 4px 8px 28px rgba(0, 0, 0, 0.08);

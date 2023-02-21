@@ -118,21 +118,21 @@ const Opening = ({
         </Body>
       </Intro>
       <Modal
-        backdrop={'/images/opening/author.jpeg'}
+        backdrop={'/images/opening/doctor.jpg'}
         isVisible={openModal}
         onClose={() => setOpenModal(false)}
       >
         <Modal.Features>
-          <img src="/images/opening/author.jpeg" width="50%" alt="" />
+          <img src="/images/opening/doctor.jpg" width="50%" alt="" />
         </Modal.Features>
         <Modal.Details>
           <WriterDetails>
-            <strong>김봉중</strong>
-            <span>전남대학교 사학과 교수</span>
+            <strong>양재웅</strong>
+            <span>정신과 전문의</span>
             <p>
-              미국사 전문가로, &lt;미국을 움직이는 네 가지 힘&gt; 등<br />
-              다수의 저서를 집필하였으며<br />
-              tvN &lt;벌거벗은 세계사&gt;, JTBC &lt;세계다크투어&gt; 등에 출연하며 활발하게 활동 중
+              정신의학 전문이며 W진병원 대표원장이다.<br />
+              현재는 방송인을 겸하고 있으며<br />
+              미스틱스토리에 소속되어있다.
             </p>
           </WriterDetails>
         </Modal.Details>

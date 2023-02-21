@@ -1,7 +1,6 @@
-import React from 'react';
-type P87Props = {
-    isCurrentPage?: boolean;
-    ref?: React.Ref<HTMLDivElement>;
+/// <reference types="react" />
+declare type P87Props = {
+    isCurrentPage: boolean;
 };
-declare const P87: ({ isCurrentPage, ref }: P87Props) => JSX.Element;
+declare const P87: ({ isCurrentPage }: P87Props) => JSX.Element;
 export default P87;

@@ -1,52 +1,72 @@
-
-import React, { ReactNode, useContext, useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
-import { Gauge } from '@shared/components'
-import { ConfigContext } from '@/components/ConfigContext'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
+
+import Icons from '../../Icons'
 
 type P87Props = {
-  isCurrentPage?: boolean,
-  ref?: React.Ref<HTMLDivElement>
+  isCurrentPage: boolean
 }
 
 const P87 = ({
-  isCurrentPage,
-  ref
+  isCurrentPage
 }: P87Props) => {
-  const { currentPage, gaugeTutorialClearRef } = useContext(ConfigContext)
-  const [value, setValue] = useState(0)
+  const [step, setStep] = useState(0)
+  const isShow1 = isCurrentPage && step < 1
+  const isShow2 = isCurrentPage && step === 1
+  const isShow3 = isCurrentPage && step > 1
 
   return (
-    <Wrapper ref={ref}>
-      <Dissolve>
-        <img src="/images/part1/P87_1.jpg" alt="" />
-        <img src="/images/part1/P87_2.jpg" alt="" style={{ opacity: Math.max((value / 100), 0) }} />
-      </Dissolve>
-      <AnimatePresence>
-        {isCurrentPage && (
-          <Gauges
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            exit={{ opacity: 0, y: 40 }}
+    <Wrapper>
+      <Imgs>
+        <Img src="/images/part1/P87_1.jpg" style={{ opacity: step >= 0 ? 1 : 0 }} alt="" />
+        <Img src="/images/part1/P87_2.jpg" style={{ opacity: step >= 1 ? 1 : 0 }} alt="" />
+        <Img src="/images/part1/P87_3.jpg" style={{ opacity: step >= 2 ? 1 : 0 }} alt="" />
+        <Img src="/images/part1/P87_4.jpg" style={{ opacity: step >= 3 ? 1 : 0 }} alt="" />
+        <SizeImg src="/images/part1/P87_4.jpg" />
+        {isShow1 && (
+          <Button
+            onClick={() => setStep(step + 1)}
+            initial={{ opacity: 0, scale: 0.6 }}
+            transition={{ type: 'spring', duration: .36, delay: 0.2 }}
+            animate={{ opacity: 1, scale: 1 }}
+            style={{
+              left: '30.4%',
+              top: '41%'
+            }}
           >
-            <Gauge
-              value={value}
-              tootip={gaugeTutorialClearRef.current}
-              max={100}
-              onChange={(value: number) => {
-                if (value === 100) {
-                  gaugeTutorialClearRef.current = true
-                }
-
-                setValue(value)
-              }}
-              gradient={'90deg, #EE4D2A 0%, #951008 100%'}
-            />
-          </Gauges>
+            <Icons.Bulb />
+          </Button>
         )}
-      </AnimatePresence>
+        {isShow2 && (
+          <Button
+            onClick={() => setStep(step + 1)}
+            initial={{ opacity: 0, scale: 0.6 }}
+            transition={{ type: 'spring', duration: .36, delay: 0.3 }}
+            animate={{ opacity: 1, scale: 1 }}
+            style={{
+              left: '60%',
+              top: '53.94%'
+            }}
+          >
+            <Icons.Bulb />
+          </Button>
+        )}
+        {isShow3 && (
+          <Button
+            initial={{ opacity: 0, scale: 0.6 }}
+            transition={{ type: 'spring', duration: .36, delay: 0.3 }}
+            animate={{ opacity: 1, scale: 1 }}
+            onClick={() => setStep(step + 1)}
+            style={{
+              left: '70%',
+              top: '53.94%'
+            }}
+          >
+            <Icons.Bulb />
+          </Button>
+        )}
+      </Imgs>
     </Wrapper>
   )
 }
@@ -65,23 +85,42 @@ const Wrapper = styled.div`
   }
 `
 
-const Dissolve = styled.div`
-  img {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    transition: opacity .1s;
-  }
+const Imgs = styled.div`
+  position: relative;
+  display: inline-flex;
+  vertical-align: top;
 `
 
-const Gauges = styled(motion.div)`
-  position: fixed;
-  bottom: 24px;
-  width: 100%;
-  .is-appbar-open & {
-    bottom: 127px;
-  }  
+const Img = styled.img`
+ position: absolute;
+ left: 50%;
+ top: 0;
+ height: 100%;
+ transform: translate(-50%, 0);
+ transition-duration: .6s;
+ transition-delay: 0s;
+`
+
+const SizeImg = styled.img`
+  pointer-events: none;
+  opacity: 0;
+`
+
+const Button = styled(motion.button)`
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10.666%;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #EB683F;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16), 4px 8px 28px rgba(0, 0, 0, 0.08);
+  border-radius: 50%;
 `
 
 export default P87

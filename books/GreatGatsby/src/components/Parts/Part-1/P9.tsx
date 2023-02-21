@@ -12,10 +12,11 @@ type P9Props = {
 }
 
 const checkItems = [
-  '예일 대학교를 졸업한 중서 지역의 부유한 명문가 출신',
-  '월스트리트에서 증권업을 배우기 위해 최근 동부의 ‘웨스트 에그\' 지역으로 이사함',
-  '주변 인물들을 객관적으로 보려 하는 신중한 성격',
-  '데이지와는 먼 친척이며, 데이지의 남편 톰과는 대학 동창'
+  '높은 수준의 연봉',
+  '화려하고 고풍스러운 직장 환경',
+  '고가 상품을 무료 제공하는 직원 복지',
+  '혈통까지 완벽한 멋진 사장님',
+  '마을 랜드마크에서 일한다는 명예'
 ]
 
 const P9 = ({
@@ -29,7 +30,7 @@ const P9 = ({
     if (!openModal) {
       setFixedButtonDisabled(0)
     }
-  }, [openModal])  
+  }, [openModal])
 
   return (
     <Wrapper>
@@ -54,7 +55,7 @@ const P9 = ({
       >
         <Modal.Features>
           <img src="/images/part1/P9_features.jpg" width="44%" alt="" />
-          <strong>닉 캐러웨이</strong>
+          <strong>페니가 꼭 직원이 되고 싶었던 이유</strong>
         </Modal.Features>
         <Modal.Details>
           <CheckList>

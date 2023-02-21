@@ -1,6 +1,6 @@
 /// <reference types="react" />
-type P29Props = {
+declare type P75Props = {
     isCurrentPage: boolean;
 };
-declare const P29: ({ isCurrentPage }: P29Props) => JSX.Element;
-export default P29;
+declare const P75: ({ isCurrentPage }: P75Props) => JSX.Element;
+export default P75;

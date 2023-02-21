@@ -4,21 +4,21 @@ import { motion } from 'framer-motion'
 
 import Icons from '../../Icons'
 
-type P14Props = {
+type P4Props = {
   isCurrentPage: boolean
 }
 
-const P14 = ({
+const P4 = ({
   isCurrentPage
-}: P14Props) => {
+}: P4Props) => {
   const [step, setStep] = useState(0)
   const isShow = isCurrentPage && step < 1
 
   return (
     <Wrapper>
       <Imgs>
-        <Img src="/images/part1/P14_1.jpg" style={{ opacity: step >= 0 ? 1 : 0 }} alt="" />
-        <Img src="/images/part1/P14_2.jpg" style={{ opacity: step >= 1 ? 1 : 0 }} alt="" />
+        <Img src="/images/part1/P4_1.jpg" style={{ opacity: step >= 0 ? 1 : 0 }} alt="" />
+        <Img src="/images/part1/P4_2.jpg" style={{ opacity: step >= 1 ? 1 : 0 }} alt="" />
         <SizeImg src="/images/part1/P4_2.jpg" />
         {isShow && (
           <Button
@@ -90,4 +90,4 @@ const Button = styled(motion.button)`
   border-radius: 50%;
 `
 
-export default P14
+export default P4

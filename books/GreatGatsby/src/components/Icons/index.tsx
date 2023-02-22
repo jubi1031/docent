@@ -39,13 +39,15 @@ export const ReviewCheck = () => (
 
 export const Select = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 8L9.99999 16L6 12" stroke="#44C971" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path stroke="#44C971" stroke-linecap="round" stroke-linejoin="round" d="m17.59 14.2-6.6-6.6 3.26-3.25L1 1l3.35 13.25 3.25-3.26 6.6 6.6 3.39-3.39Z" />
   </svg>
 )
 
 export const Speak = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 8L9.99999 16L6 12" stroke="#EF56CE" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path stroke="#EF56CE" stroke-linecap="round" stroke-linejoin="round" d="M11.3 11.56a4.28 4.28 0 1 0 0-8.56 4.28 4.28 0 0 0 0 8.56Z" />
+    <path stroke="#EF56CE" stroke-linecap="round" stroke-linejoin="round" d="M11.3 11.62C3 11.62 3 19.88 3 19.88h16.6s-.3-8.26-8.3-8.26Z" clip-rule="evenodd" />
+    <path stroke="#EF56CE" stroke-linecap="round" stroke-linejoin="round" d="m21.33 3-3.14 3.14M21.33 8.15h-3.31M18.19 10.15l3.14 3.15" />
   </svg>
 )
 
@@ -57,7 +59,9 @@ export const SpeakCheck = () => (
 
 export const Eraser = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 8L9.99999 16L6 12" stroke="#ED3E3E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path stroke="#ED3E3E" stroke-width=".906" d="m14.456 2.455 5.08 5.087a2.026 2.026 0 0 1-.256 2.84l-6.897 6.889a2.041 2.041 0 0 1-2.839.263l-5.08-5.087a2.025 2.025 0 0 1 .256-2.84l6.897-6.889a2.041 2.041 0 0 1 2.84-.263Z" clip-rule="evenodd" />
+    <path stroke="#ED3E3E" stroke-width=".906" d="m5.58 8.754 7.655 7.663" />
+    <path stroke="#ED3E3E" stroke-linecap="round" stroke-linejoin="round" stroke-width=".906" d="M6 18h10M8 20h6" />
   </svg>
 )
 

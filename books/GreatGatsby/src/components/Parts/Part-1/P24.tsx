@@ -5,35 +5,35 @@ import { motion } from 'framer-motion'
 import Icons from '../../Icons'
 
 type P24Props = {
-    isCurrentPage: boolean
+  isCurrentPage: boolean
 }
 
 const P24 = ({
-    isCurrentPage
+  isCurrentPage
 }: P24Props) => {
-    const [step, setStep] = useState(0)
-    const isShow = isCurrentPage && step < 1
+  const [step, setStep] = useState(0)
+  const isShow = isCurrentPage && step < 1
 
-    return (
-        <Wrapper>
-            <Imgs>
-                <Img src="/images/part1/P24_1.jpg" style={{ opacity: step >= 0 ? 1 : 0 }} alt="" />
-                <Img src="/images/part1/P24_2.jpg" style={{ opacity: step >= 1 ? 1 : 0 }} alt="" />
-                <SizeImg src="/images/part1/P4_2.jpg" />
-                {isShow && (
-                    <Button
-                        initial={{ opacity: 0, scale: 0.6, x: `${-50}%` }}
-                        transition={{ type: 'spring', duration: .36, delay: 0.2 }}
-                        animate={{ opacity: 1, scale: 1 }}
+  return (
+    <Wrapper>
+      <Imgs>
+        <Img src="/images/part1/P24_1.jpg" style={{ opacity: step >= 0 ? 1 : 0 }} alt="" />
+        <Img src="/images/part1/P24_2.jpg" style={{ opacity: step >= 1 ? 1 : 0 }} alt="" />
+        <SizeImg src="/images/part1/P4_2.jpg" />
+        {isShow && (
+          <Button
+            initial={{ opacity: 0, scale: 0.6, x: `${-50}%` }}
+            transition={{ type: 'spring', duration: .36, delay: 0.2 }}
+            animate={{ opacity: 1, scale: 1 }}
 
-                        onClick={() => setStep(step + 1)}
-                    >
-                        <Icons.Bulb />
-                    </Button>
-                )}
-            </Imgs>
-        </Wrapper>
-    )
+            onClick={() => setStep(step + 1)}
+          >
+            <Icons.Eraser />
+          </Button>
+        )}
+      </Imgs>
+    </Wrapper>
+  )
 }
 
 const Wrapper = styled.div`
@@ -82,7 +82,7 @@ const Button = styled(motion.button)`
   width: 40px;
   height: 40px;
   left: 50%;
-  top: 84%;
+  top: 81.5%;
   transform: translate(-50%, 0);
   border: 2px solid #EB683F;
   background: rgba(255, 255, 255, 0.85);

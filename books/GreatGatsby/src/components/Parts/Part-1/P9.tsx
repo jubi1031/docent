@@ -113,8 +113,8 @@ const Button = styled(motion.button)`
   width: 40px;
   height: 40px;
   position: absolute;
-  left: 57.06%;
-  top: 60.59%;
+  left: 65%;
+  top: 50%;
   border: 2px solid #A451F7;
   background: rgba(255, 255, 255, 0.85);
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16), 4px 8px 28px rgba(0, 0, 0, 0.08);

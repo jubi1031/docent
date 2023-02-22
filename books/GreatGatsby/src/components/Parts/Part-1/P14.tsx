@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
+import Modal from '@/components/Modal'
 import { motion } from 'framer-motion'
-
+import { ConfigContext } from '@/components/ConfigContext'
 import Icons from '../../Icons'
 
 type P14Props = {
@@ -19,16 +20,16 @@ const P14 = ({
       <Imgs>
         <Img src="/images/part1/P14_1.jpg" style={{ opacity: step >= 0 ? 1 : 0 }} alt="" />
         <Img src="/images/part1/P14_2.jpg" style={{ opacity: step >= 1 ? 1 : 0 }} alt="" />
-        <SizeImg src="/images/part1/P4_2.jpg" />
+
+        <SizeImg src="/images/part1/P14_2.jpg" />
         {isShow && (
           <Button
             initial={{ opacity: 0, scale: 0.6, x: `${-50}%` }}
             transition={{ type: 'spring', duration: .36, delay: 0.2 }}
             animate={{ opacity: 1, scale: 1 }}
-
             onClick={() => setStep(step + 1)}
           >
-            <Icons.Bulb />
+            <Icons.Select />
           </Button>
         )}
       </Imgs>
@@ -44,10 +45,10 @@ const Wrapper = styled.div`
     display: block;
     margin: 0 auto;
     max-height: 100vh;
-    @media (max-height: 480px) {
-      max-height: unset;
-    }
-  }
+   @media (max-height: 480px) {
+     max-height: unset;
+   }
+  }  
 `
 
 const Imgs = styled.div`
@@ -57,13 +58,13 @@ const Imgs = styled.div`
 `
 
 const Img = styled.img`
- position: absolute;
- left: 50%;
- top: 0;
- height: 100%;
- transform: translate(-50%, 0);
- transition-duration: .6s;
- transition-delay: 0s;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 100%;
+  transform: translate(-50%, 0);
+  transition-duration: .6s;
+  transition-delay: 0s;
 `
 
 const SizeImg = styled.img`
@@ -72,19 +73,15 @@ const SizeImg = styled.img`
 `
 
 const Button = styled(motion.button)`
-  position: absolute;
-  z-index: 4;
-  left: 0;
-  top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
-  left: 50%;
-  top: 84%;
-  transform: translate(-50%, 0);
-  border: 2px solid #EB683F;
+  position: absolute;
+  left: 70%;
+  top: 38%;
+  border: 2px solid #44C971;
   background: rgba(255, 255, 255, 0.85);
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16), 4px 8px 28px rgba(0, 0, 0, 0.08);
   border-radius: 50%;

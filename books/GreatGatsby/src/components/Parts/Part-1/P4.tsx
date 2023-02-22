@@ -28,7 +28,7 @@ const P4 = ({
 
             onClick={() => setStep(step + 1)}
           >
-            <Icons.Bulb />
+            <Icons.Eraser />
           </Button>
         )}
       </Imgs>

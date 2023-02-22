@@ -31,8 +31,8 @@ const P75 = ({
             transition={{ type: 'spring', duration: .36, delay: 0.2 }}
             animate={{ opacity: 1, scale: 1 }}
             style={{
-              left: '30.4%',
-              top: '41%'
+              left: '45%',
+              top: '27%'
             }}
           >
             <Icons.Bulb />
@@ -45,8 +45,8 @@ const P75 = ({
             transition={{ type: 'spring', duration: .36, delay: 0.3 }}
             animate={{ opacity: 1, scale: 1 }}
             style={{
-              left: '60%',
-              top: '53.94%'
+              left: '65%',
+              top: '59%'
             }}
           >
             <Icons.Bulb />
@@ -57,10 +57,11 @@ const P75 = ({
             initial={{ opacity: 0, scale: 0.6 }}
             transition={{ type: 'spring', duration: .36, delay: 0.3 }}
             animate={{ opacity: 1, scale: 1 }}
+
             onClick={() => setStep(step + 1)}
             style={{
-              left: '70%',
-              top: '53.94%'
+              left: '45%',
+              top: '73%'
             }}
           >
             <Icons.Bulb />

@@ -4,10 +4,15 @@ import P6 from './P6'
 import P9 from './P9'
 import P11 from './P11'
 import P14 from './P14'
+import P21 from './P21'
 import P24 from './P24'
 import P29 from './P29'
 import P35 from './P35'
+import P45 from './P45'
+import P53 from './P53'
+import P59 from './P59'
 import P75 from './P75'
+import P84 from './P84'
 import P87 from './P87'
 
 const Part1s = [
@@ -32,7 +37,7 @@ const Part1s = [
   'P18',
   'P19',
   'P20',
-  'P21',
+  P21,
   'P22',
   'P23',
   P24,
@@ -56,7 +61,7 @@ const Part1s = [
   'P42',
   'P43',
   'P44',
-  'P45',
+  P45,
   'P46',
   'P47',
   'P48',
@@ -64,13 +69,13 @@ const Part1s = [
   'P50',
   'P51',
   'P52',
-  'P53',
+  P53,
   'P54',
   'P55',
   'P56',
   'P57',
   'P58',
-  'P59',
+  P59,
   'P60',
   'P61',
   'P62',
@@ -95,7 +100,7 @@ const Part1s = [
   'P81',
   'P82',
   'P83',
-  'P84',
+  P84,
   'P85',
   'P86',
   P87,

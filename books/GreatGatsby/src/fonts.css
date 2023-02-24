@@ -3,9 +3,9 @@
   font-weight: 400;
   font-display: swap;
   src: local("Spoqa Han Sans Neo Regular"),
-  url(/fonts/SpoqaHanSansNeo-Regular.woff2) format("woff2"),
-  url(/fonts/SpoqaHanSansNeo-Regular.woff) format("woff"),
-  url(/fonts/SpoqaHanSansNeo-Regular.ttf) format("truetype")
+    url(/fonts/SpoqaHanSansNeo-Regular.woff2) format("woff2"),
+    url(/fonts/SpoqaHanSansNeo-Regular.woff) format("woff"),
+    url(/fonts/SpoqaHanSansNeo-Regular.ttf) format("truetype")
 }
 
 @font-face {
@@ -13,9 +13,9 @@
   font-weight: 500;
   font-display: swap;
   src: local("Spoqa Han Sans Neo Regular"),
-  url(/fonts/SpoqaHanSansNeo-Medium.woff2) format("woff2"),
-  url(/fonts/SpoqaHanSansNeo-Medium.woff) format("woff"),
-  url(/fonts/SpoqaHanSansNeo-Medium.ttf) format("truetype")
+    url(/fonts/SpoqaHanSansNeo-Medium.woff2) format("woff2"),
+    url(/fonts/SpoqaHanSansNeo-Medium.woff) format("woff"),
+    url(/fonts/SpoqaHanSansNeo-Medium.ttf) format("truetype")
 }
 
 @font-face {
@@ -23,24 +23,29 @@
   font-weight: 700;
   font-display: swap;
   src: local("Spoqa Han Sans Neo Bold"),
-  url(/fonts/SpoqaHanSansNeo-Bold.woff2) format("woff2"),
-  url(/fonts/SpoqaHanSansNeo-Bold.woff) format("woff"),
-  url(/fonts/SpoqaHanSansNeo-Bold.ttf) format("truetype")
+    url(/fonts/SpoqaHanSansNeo-Bold.woff2) format("woff2"),
+    url(/fonts/SpoqaHanSansNeo-Bold.woff) format("woff"),
+    url(/fonts/SpoqaHanSansNeo-Bold.ttf) format("truetype")
 }
 
 @font-face {
   font-family: 'NanumMyeongjoBold';
   src: local('NanumMyeongjoBold'),
-  url(/fonts/NanumMyeongjoBold.woff) format("woff"),
-  url(/fonts/NanumMyeongjoBold.ttf) format("truetype")
+    url(/fonts/NanumMyeongjoBold.woff) format("woff"),
+    url(/fonts/NanumMyeongjoBold.ttf) format("truetype")
 }
 
 @font-face {
   font-family: 'KoPubWorldBatangLight';
   src: local('KoPubWorldBatangLight'),
-  url(/fonts/KoPubWorldBatangLight.ttf) format("truetype")
+    url(/fonts/KoPubWorldBatangLight.ttf) format("truetype")
 }
 
+@font-face {
+  font-family: 'HSBombaram3.0_Regular';
+  src: local('HSBombaram3.0_Regular'),
+    url(/fonts/HSBombaram3.0_Regular.ttf) format("truetype")
+}
 
 
 /* NanumMyeongjoBold.woff */

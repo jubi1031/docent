@@ -38,7 +38,7 @@ export const ReviewCheck = () => (
 )
 
 export const Select = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg width="24" height="24" viewBox="-2 -2 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path stroke="#44C971" stroke-linecap="round" stroke-linejoin="round" d="m17.59 14.2-6.6-6.6 3.26-3.25L1 1l3.35 13.25 3.25-3.26 6.6 6.6 3.39-3.39Z" />
   </svg>
 )

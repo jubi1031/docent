@@ -12,57 +12,21 @@ const P75 = ({
   isCurrentPage
 }: P75Props) => {
   const [step, setStep] = useState(0)
-  const isShow1 = isCurrentPage && step < 1
-  const isShow2 = isCurrentPage && step === 1
-  const isShow3 = isCurrentPage && step > 1
+  const isShow = isCurrentPage && step < 1
 
   return (
     <Wrapper>
       <Imgs>
         <Img src="/images/part1/P75_1.jpg" style={{ opacity: step >= 0 ? 1 : 0 }} alt="" />
         <Img src="/images/part1/P75_2.jpg" style={{ opacity: step >= 1 ? 1 : 0 }} alt="" />
-        <Img src="/images/part1/P75_3.jpg" style={{ opacity: step >= 2 ? 1 : 0 }} alt="" />
-        <Img src="/images/part1/P75_4.jpg" style={{ opacity: step >= 3 ? 1 : 0 }} alt="" />
-        <SizeImg src="/images/part1/P75_4.jpg" />
-        {isShow1 && (
+        <SizeImg src="/images/part1/P75_2.jpg" />
+        {isShow && (
           <Button
-            onClick={() => setStep(step + 1)}
-            initial={{ opacity: 0, scale: 0.6 }}
+            initial={{ opacity: 0, scale: 0.6, x: `${-50}%` }}
             transition={{ type: 'spring', duration: .36, delay: 0.2 }}
-            animate={{ opacity: 1, scale: 1 }}
-            style={{
-              left: '45%',
-              top: '27%'
-            }}
-          >
-            <Icons.Bulb />
-          </Button>
-        )}
-        {isShow2 && (
-          <Button
-            onClick={() => setStep(step + 1)}
-            initial={{ opacity: 0, scale: 0.6 }}
-            transition={{ type: 'spring', duration: .36, delay: 0.3 }}
-            animate={{ opacity: 1, scale: 1 }}
-            style={{
-              left: '65%',
-              top: '59%'
-            }}
-          >
-            <Icons.Bulb />
-          </Button>
-        )}
-        {isShow3 && (
-          <Button
-            initial={{ opacity: 0, scale: 0.6 }}
-            transition={{ type: 'spring', duration: .36, delay: 0.3 }}
             animate={{ opacity: 1, scale: 1 }}
 
             onClick={() => setStep(step + 1)}
-            style={{
-              left: '45%',
-              top: '73%'
-            }}
           >
             <Icons.Bulb />
           </Button>
@@ -115,9 +79,11 @@ const Button = styled(motion.button)`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 10.666%;
   width: 40px;
   height: 40px;
+  left: 50%;
+  top: 26%;
+  transform: translate(-50%, 0);
   border: 2px solid #EB683F;
   background: rgba(255, 255, 255, 0.85);
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16), 4px 8px 28px rgba(0, 0, 0, 0.08);

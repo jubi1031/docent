@@ -53,6 +53,21 @@ const Opening = ({
             <Number>#2</Number>
             <Title>달러구트 꿈 백화점</Title>
             <Writer>
+              <KoName1 onClick={(event) => {
+                event.stopPropagation()
+
+                setOpenModal(true)
+              }}>
+                <Buttons>
+                  <Button1 type="button" onClick={() => swiperRef.current.slideTo(2, 0)}>도슨트 인사말</Button1>
+                </Buttons>
+              </KoName1>
+              <EnName1 onClick={(event) => {
+                event.stopPropagation()
+                setOpenModal(true)
+              }}></EnName1>
+
+
               <KoName onClick={(event) => {
                 event.stopPropagation()
 
@@ -242,6 +257,29 @@ const EnName = styled.span`
   ${clamp('font-size', [MIN_VIEWPORT, MAX_VIEWPORT, 12])};
   ${clamp('line-height', [MIN_VIEWPORT, MAX_VIEWPORT, 18])};
 `
+const KoName1 = styled.strong`
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 20px;
+  ${clamp('font-size', [MIN_VIEWPORT, MAX_VIEWPORT, 14])};
+  ${clamp('line-height', [MIN_VIEWPORT, MAX_VIEWPORT, 20])};
+  margin-bottom: 2px;
+  svg {
+    margin-left: 4px;
+  }
+`
+
+const EnName1 = styled.span`
+  display: block;
+  color: #FFFFFF;
+  opacity: 0.6;
+  font-size: 12px;
+  line-height: 18px;
+  ${clamp('font-size', [MIN_VIEWPORT, MAX_VIEWPORT, 12])};
+  ${clamp('line-height', [MIN_VIEWPORT, MAX_VIEWPORT, 18])};
+`
 
 const Tooltip = styled(motion.span) <{ inVisible: boolean }>`
   ${({ inVisible }) => inVisible ? 'display: none' : ''};
@@ -387,6 +425,25 @@ const Button = styled.button`
   color: #fff;
   background-color: #333;
   border-radius: 4px;
+`
+
+const Button1 = styled.button`
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  line-height: 18px;
+  padding: 8px;
+  ${clamp('font-size', [MIN_VIEWPORT, MAX_VIEWPORT, 12])};
+  ${clamp('line-height', [MIN_VIEWPORT, MAX_VIEWPORT, 18])};
+  ${clamp('padding', [MIN_VIEWPORT, MAX_VIEWPORT, 8])};
+  margin-bottom: 120px;
+  color: #fff;
+  background-color: rgba;
+  border-radius: 4px;
+  border-width: 3px 3px 3px 3px;
+  border-style: solid;
+  border-color: white;
+
 `
 
 const WriterDetails = styled.div`

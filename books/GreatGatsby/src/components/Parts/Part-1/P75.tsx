@@ -12,6 +12,8 @@ const P75 = ({
   isCurrentPage
 }: P75Props) => {
   const [step, setStep] = useState(0)
+  const [step1, setStep1] = useState(0)
+  const [step2, setStep2] = useState(0)
   const isShow = isCurrentPage && step < 1
 
   return (
@@ -19,18 +21,26 @@ const P75 = ({
       <Imgs>
         <Img src="/images/part1/P75_1.jpg" style={{ opacity: step >= 0 ? 1 : 0 }} alt="" />
         <Img src="/images/part1/P75_2.jpg" style={{ opacity: step >= 1 ? 1 : 0 }} alt="" />
-        <SizeImg src="/images/part1/P75_2.jpg" />
+        <Img1 src="/images/part1/P75_3.jpg" style={{ opacity: step1 >= 1 ? 1 : 0 }} alt="" />
+        <Img2 src="/images/part1/P75_4.jpg" style={{ opacity: step2 >= 1 ? 1 : 0 }} alt="" />
+        <SizeImg src="/images/part1/P75_4.jpg" />
         {isShow && (
           <Button
             initial={{ opacity: 0, scale: 0.6, x: `${-50}%` }}
             transition={{ type: 'spring', duration: .36, delay: 0.2 }}
             animate={{ opacity: 1, scale: 1 }}
 
-            onClick={() => setStep(step + 1)}
+            onClick={() => {
+              setStep(step + 1)
+              setStep1(step1 + 1)
+              setStep2(step1 + 2)
+            }}
+
           >
             <Icons.Bulb />
           </Button>
         )}
+
       </Imgs>
     </Wrapper>
   )
@@ -65,6 +75,24 @@ const Img = styled.img`
  transition-duration: .6s;
  transition-delay: 0s;
 `
+const Img1 = styled.img`
+ position: absolute;
+ left: 50%;
+ top: 0;
+ height: 100%;
+ transform: translate(-50%, 0);
+ transition-duration: .6s;
+ transition-delay: 1.2s;
+`
+const Img2 = styled.img`
+ position: absolute;
+ left: 50%;
+ top: 0;
+ height: 100%;
+ transform: translate(-50%, 0);
+ transition-duration: .6s;
+ transition-delay: 3s;
+`
 
 const SizeImg = styled.img`
   pointer-events: none;
@@ -89,5 +117,6 @@ const Button = styled(motion.button)`
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16), 4px 8px 28px rgba(0, 0, 0, 0.08);
   border-radius: 50%;
 `
+
 
 export default P75

@@ -2,18 +2,18 @@ import { ReactNode } from 'react'
 import styled from 'styled-components'
 
 type CommentaryProps = {
-    children?: ReactNode
+  children?: ReactNode
 }
 
 const Message = ({
-    children
-  }: CommentaryProps) => {
-    return (
-      <Wrapper>
-        {children}
-      </Wrapper>
-    )
-  }
+  children
+}: CommentaryProps) => {
+  return (
+    <Wrapper>
+      {children}
+    </Wrapper>
+  )
+}
 
 const Wrapper = styled.div`
   display: inline-block;
@@ -167,8 +167,8 @@ Message.NameR = NameR
 Message.WrapperRF = ChatWrapperRF
 Message.WrapperR = ChatWrapperR
 
-Message.ImageL=ImageL
-Message.ImageR=ImageR
+Message.ImageL = ImageL
+Message.ImageR = ImageR
 Message.Next = Next
 Message.Background = Background
 Message.All = All

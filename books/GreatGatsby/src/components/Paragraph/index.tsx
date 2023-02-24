@@ -21,7 +21,7 @@ const Paragraph = ({
 }
 
 const Wrapper = styled.p`
-  font-family: 'KoPubWorldBatangLight';
+  font-family: 'SpoqaHanSansNeo-Regular';
   ${clamp('font-size', [MIN_VIEWPORT, MAX_VIEWPORT, 17])};
   ${clamp('line-height', [MIN_VIEWPORT, MAX_VIEWPORT, 29.5])};
   padding: 0 16px;

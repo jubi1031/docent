@@ -48,7 +48,7 @@ const P59 = ({
                 )}
             </Imgs>
             <Modal
-                backdrop={'/images/part1/P5_features.jpg'}
+                backdrop={'/images/part1/P59.jpg'}
                 isVisible={openModal}
                 onClose={() => setOpenModal(false)}
             >
@@ -112,8 +112,8 @@ const Button = styled(motion.button)`
   width: 40px;
   height: 40px;
   position: absolute;
-  left: 77.5%;
-  top: 19.5%;
+  left: 41%;
+  top: 22%;
   border: 2px solid #EF56CE;
   background: rgba(255, 255, 255, 0.85);
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16), 4px 8px 28px rgba(0, 0, 0, 0.08);

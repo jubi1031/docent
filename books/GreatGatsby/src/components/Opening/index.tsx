@@ -457,7 +457,7 @@ const Button = styled.button`
 `
 
 const ButtonToGreet = styled.button`
-  width: 100px;
+  width: 25vw;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -4,7 +4,9 @@ import Modal from '@/components/Modal'
 import CheckList from '../../CheckList'
 import { motion } from 'framer-motion'
 import { ConfigContext } from '@/components/ConfigContext'
+import AudioButton from '@/components/AudioButton'
 import Icons from '../../Icons'
+import { useSound } from '@shared/hooks'
 
 import FixedButton from '@/components/Modal/FixedButton'
 
@@ -18,18 +20,46 @@ const checkItems = [
     '청산유수와도 같은 말솜씨'
 ]
 
-const P84 = ({
-    isCurrentPage
-}: P84Props) => {
+const P84 = ({ isCurrentPage }: P84Props) => {
     const { openModal, setOpenModal } = useContext(ConfigContext)
     const [tutorial, setTutorial] = useState(false)
     const [fixedButtonDisabled, setFixedButtonDisabled] = useState(0)
+
+    const [paused, setPaused] = useState(false)
+    const [_, secondHalfSound] = useSound({
+        src: 'sounds/P1-21.mp3',
+        volume: 0.5,
+        loop: false
+    })
+
+    const handleOpenModal = () => {
+        setOpenModal(true)
+        setPaused(false)
+        secondHalfSound.play()
+    }
+
+    const handleCloseModal = () => {
+        setOpenModal(false)
+        secondHalfSound.stop()
+    }
+
+    const handleToggleAudio = () => {
+        setPaused((prev) => {
+            if (prev) secondHalfSound.play()
+            else secondHalfSound.pause()
+            return !prev
+        })
+    }
 
     useEffect(() => {
         if (!openModal) {
             setFixedButtonDisabled(0)
         }
     }, [openModal])
+
+    useEffect(() => {
+        secondHalfSound.stop()
+    }, [])
 
     return (
         <Wrapper>
@@ -38,11 +68,10 @@ const P84 = ({
                 {isCurrentPage && (
                     <Button
                         type="button"
-                        onClick={() => setOpenModal(true)}
+                        onClick={handleOpenModal}
                         initial={{ opacity: 0, scale: 0.6 }}
-                        transition={{ type: 'spring', duration: .36, delay: 0.2 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                    >
+                        transition={{ type: 'spring', duration: 0.36, delay: 0.2 }}
+                        animate={{ opacity: 1, scale: 1 }}>
                         {tutorial ? <Icons.SpeakCheck /> : <Icons.Speak />}
                     </Button>
                 )}
@@ -50,8 +79,7 @@ const P84 = ({
             <Modal
                 backdrop={'/images/part1/P84.jpg'}
                 isVisible={openModal}
-                onClose={() => setOpenModal(false)}
-            >
+                onClose={handleCloseModal}>
                 <Modal.Features>
                     <img src="/images/part1/P5_features.jpg" width="44%" alt="" />
                     <strong>페니</strong>
@@ -63,10 +91,14 @@ const P84 = ({
                                 <CheckList.Item
                                     key={i}
                                     onChange={(checked) => {
-                                        const value = Math.max(checked ? fixedButtonDisabled + 1 : fixedButtonDisabled - 1, 0)
+                                        const value = Math.max(
+                                            checked
+                                                ? fixedButtonDisabled + 1
+                                                : fixedButtonDisabled - 1,
+                                            0
+                                        )
                                         setFixedButtonDisabled(value)
-                                    }}
-                                >
+                                    }}>
                                     {text}
                                 </CheckList.Item>
                             )
@@ -81,6 +113,9 @@ const P84 = ({
                         setTutorial(true)
                     }}
                 />
+                {openModal && (
+                    <AudioButton paused={paused} onToggle={handleToggleAudio} />
+                )}
             </Modal>
         </Wrapper>
     )

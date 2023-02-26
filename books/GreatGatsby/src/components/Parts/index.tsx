@@ -33,13 +33,13 @@ const Parts = () => {
       { title: 'Part 1. 스토리 보기', page: 3, depth: 1 },
       { title: 'Part 2. 해설 보기', page: 104, depth: 1 },
       { title: '도슨트의 <달러구트 꿈 백화점> 감상', page: 105, depth: 2 },
-      { title: '꿈이란 무엇일까?', page: 114, depth: 2 },
-      { title: '꿈에 대한 정신의학적 해석', page: 131, depth: 2 },
-      { title: "'트라우마 환불 요청' 에피소드", page: 132, depth: 2 },
-      { title: "'익명의 손님께서 당신에게 보낸 꿈' 에피소드", page: 133, depth: 2 },
-      { title: "'체험판 출시 : 타인의 삶' 에피소드", page: 134, depth: 2 },
-      { title: '본인의 삶 사랑하기', page: 135, depth: 2 },
-      { title: '마무리', page: 136, depth: 2 }
+      { title: '꿈이란 무엇일까?', page: 106, depth: 2 },
+      { title: '꿈에 대한 정신의학적 해석', page: 107, depth: 2 },
+      { title: "'트라우마 환불 요청' 에피소드", page: 108, depth: 2 },
+      { title: "'익명의 손님께서 당신에게 보낸 꿈' 에피소드", page: 109, depth: 2 },
+      { title: "'체험판 출시 : 타인의 삶' 에피소드", page: 110, depth: 2 },
+      { title: '본인의 삶 사랑하기', page: 111, depth: 2 },
+      { title: '마무리', page: 112, depth: 2 }
     ])
 
     iframeMessage.post('coverPath', '/images/opening/cover.png')

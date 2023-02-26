@@ -44,6 +44,8 @@ const Opening = ({
 }: OpeningProps) => {
   const { swiperRef, openModal, setOpenModal } = useContext(ConfigContext)
   const isOpenModalCount = useRef(0)
+  const { swiperRef1, openModal1, setOpenModal1 } = useContext(ConfigContext)
+  const isOpenModalCount1 = useRef(0)
 
   return (
     <Wrapper>
@@ -56,15 +58,17 @@ const Opening = ({
               <KoName1 onClick={(event) => {
                 event.stopPropagation()
 
-                setOpenModal(true)
+                ++isOpenModalCount1.current
+
+                setOpenModal1(true)
               }}>
                 <Buttons>
-                  <Button1 type="button" onClick={() => swiperRef.current.slideTo(2, 0)}>도슨트 인사말</Button1>
+                  <Button1 type="button" >도슨트 인사말</Button1>
                 </Buttons>
               </KoName1>
               <EnName1 onClick={(event) => {
                 event.stopPropagation()
-                setOpenModal(true)
+                setOpenModal1(true)
               }}></EnName1>
 
 
@@ -136,38 +140,56 @@ const Opening = ({
         modules={[Pagination]}
         pagination={{ clickable: true }}
       >
-        <SwiperSlide>
-          <Paragraph>
-            <Modal
-              backdrop={'/images/opening/doctor.jpg'}
-              isVisible={openModal}
-              onClose={() => setOpenModal(false)}
 
-            >
-              <Modal.Features>
-                <img src="/images/opening/doctor.jpg" width="50%" alt="" />
-              </Modal.Features>
-              <Modal.Details>
-                <WriterDetails>
-                  <strong>양재웅</strong>
-                  <span>정신과 전문의</span>
-                  <p>
-                    정신의학 전문이며 W진병원 대표원장이다.<br />
-                    현재는 방송인을 겸하고 있으며<br />
-                    미스틱스토리에 소속되어있다.
-                  </p>
-                </WriterDetails>
-              </Modal.Details>
-            </Modal>
-          </Paragraph>
-        </SwiperSlide>
+        <Modal
+          backdrop={'/images/opening/doctor.jpg'}
+          isVisible={openModal}
+          onClose={() => setOpenModal(false)}
 
+        >
+          <Modal.Features>
+            <img src="/images/opening/doctor.jpg" width="50%" alt="" />
+          </Modal.Features>
+          <Modal.Details>
+            <WriterDetails>
+              <strong>양재웅</strong>
+              <span>정신과 전문의</span>
+              <p>
+                정신의학 전문이며 W진병원 대표원장이다.<br />
+                현재는 방송인을 겸하고 있으며<br />
+                미스틱스토리에 소속되어있다.
+              </p>
+            </WriterDetails>
+          </Modal.Details>
+        </Modal>
+      </Swiper>
 
-        <SwiperSlide>
-          <Paragraph>
+      <Swiper
+        modules={[Pagination]}
+        pagination={{ clickable: true }}
+      >
 
-          </Paragraph>
-        </SwiperSlide>
+        <Modal
+          backdrop={'/images/opening/doctor.jpg'}
+          isVisible={openModal1}
+          onClose={() => setOpenModal1(false)}
+
+        >
+          <Modal.Features>
+            <img src="/images/opening/doctor.jpg" width="50%" alt="" />
+          </Modal.Features>
+          <Modal.Details>
+            <WriterDetails>
+              <strong>양재웅웅웅</strong>
+              <span>정신과 전문의</span>
+              <p>
+                정신의학 전문이며 W진병원 대표원장이다.<br />
+                현재는 방송인을 겸하고 있으며<br />
+                미스틱스토리에 소속되어있다.
+              </p>
+            </WriterDetails>
+          </Modal.Details>
+        </Modal>
       </Swiper>
 
     </Wrapper>

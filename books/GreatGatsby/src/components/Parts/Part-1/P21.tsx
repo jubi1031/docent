@@ -31,7 +31,6 @@ const P21 = ({ isCurrentPage }: P21Props) => {
     volume: 0.5,
     loop: false
   })
-  secondHalfSound.stop()
 
   const handleOpenModal = () => {
     setOpenModal(true)
@@ -59,8 +58,6 @@ const P21 = ({ isCurrentPage }: P21Props) => {
   }, [openModal])
 
   useEffect(() => {
-    console.log('use effect')
-    console.log(_?.stop)
     secondHalfSound.stop()
   }, [])
 

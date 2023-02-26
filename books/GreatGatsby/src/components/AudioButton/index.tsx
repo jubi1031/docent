@@ -11,21 +11,34 @@ interface AudioButtonProps {
 
 const AudioButton = (props: AudioButtonProps) => {
   const [visible, setVisible] = useState(false)
-  const [translate, setTranslate] = useState(false)
+  const [appbar, setAppbar] = useState(false)
+
+  const handleClickWrapper = (event: React.MouseEvent) => {
+    event.stopPropagation()
+    iframeMessage.post('toggleAppbar')
+  }
+
+  const handleToggle = (event: React.MouseEvent) => {
+    event.stopPropagation()
+    props.onToggle()
+  }
 
   useEffect(() => {
     iframeMessage.receive((channel = '', payload: any) => {
       if (channel !== 'toggleAppbar') return
-      setVisible(payload)
-      setTranslate(payload)
+      setAppbar(payload)
     })
   }, [])
 
+  useEffect(() => {
+    setVisible(props.paused || appbar)
+  }, [props.paused, appbar])
+
   return (
     <Wrapper
-      className={classNames({ visible: visible, translate: translate })}
-      onClick={(event) => event.stopPropagation()}>
-      <Sound type="button" onClick={props.onToggle}>
+      className={classNames({ '--visible': visible, '--open-appbar': appbar })}
+      onClick={handleClickWrapper}>
+      <Sound type="button" onClick={handleToggle}>
         {!props.paused && (
           <svg
             width="24"
@@ -65,23 +78,34 @@ const AudioButton = (props: AudioButtonProps) => {
 export default AudioButton
 
 const Wrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 64px 16px 0;
+
   position: fixed;
-  top: 16px;
-  right: 16px;
-  transition: transform 0.24s;
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
 
-  &.visible {
-    pointer-events: auto;
+  &:not(.--visible) {
+    @keyframes disappear {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+
+    animation: disappear 0.24s forwards;
+    animation-delay: 3s;
   }
 
-  &.translate {
-    transform: translateY(48px);
-  }
-
-  .is-appbar-open & {
-    top: 16px !important;
+  &.--open-appbar {
+    bottom: 0;
   }
 `
 
@@ -94,9 +118,4 @@ const Sound = styled(motion.button)`
   border-radius: 50%;
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1), 0px 2px 8px rgba(0, 0, 0, 0.1);
   background-color: rgba(255, 255, 255, 0.9);
-  opacity: 0;
-  transition: opacity 0.24s 0.24s ease;
-  .visible & {
-    opacity: 1;
-  }
 `

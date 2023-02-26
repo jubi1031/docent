@@ -434,13 +434,13 @@ const Button1 = styled.button`
   line-height: 18px;
   padding: 8px;
   ${clamp('font-size', [MIN_VIEWPORT, MAX_VIEWPORT, 12])};
-  ${clamp('line-height', [MIN_VIEWPORT, MAX_VIEWPORT, 18])};
+  ${clamp('line-height', [MIN_VIEWPORT, MAX_VIEWPORT, 10])};
   ${clamp('padding', [MIN_VIEWPORT, MAX_VIEWPORT, 8])};
-  margin-bottom: 120px;
+  margin-bottom: 140px;
   color: #fff;
   background-color: rgba;
   border-radius: 4px;
-  border-width: 3px 3px 3px 3px;
+  border-width: 1.5px 1.5px 1.5px 1.5px;
   border-style: solid;
   border-color: white;
 

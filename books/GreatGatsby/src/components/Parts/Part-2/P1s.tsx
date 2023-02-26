@@ -19,13 +19,6 @@ const P1_0 = () => {
         <Message.BackgroundH>
           <Message.All>
             <Message.Head></Message.Head>
-            <Message.BoxC>
-              <Message.Box>
-                <p>
-                  화면을 터치하면 대화창이 나타납니다
-                </p>
-              </Message.Box>
-            </Message.BoxC>
             <Message.ProfileImageL src='/images/part2/Message1.png' />
             <Message.NameL>김해나</Message.NameL>
             <Message.CWrapperF>
@@ -89,7 +82,7 @@ const P1_0 = () => {
 
             <Message.Next></Message.Next>
 
-            <NextTalk type="button" onClick={() => swiperRef.current.slideTo(5, 0)}> 다음 대화로 넘어가기 &nbsp;&gt;</NextTalk>
+            <NextTalk type="button" onClick={() => swiperRef.current.slideTo(105, 0)}> 다음 대화로 넘어가기 &nbsp;&gt;</NextTalk>
 
           </Message.All>
         </Message.BackgroundH>

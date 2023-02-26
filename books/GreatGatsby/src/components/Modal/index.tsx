@@ -107,6 +107,8 @@ const Wrapper = styled(motion.div)<{ backdrop: string }>`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   text-align: left;
+  filter: blur(0px); // AudioButton position: fixed 버그 대응
+
   &::before {
     content: '';
     position: absolute;

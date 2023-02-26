@@ -9,7 +9,6 @@ import Opening from '@/components/Opening'
 import Part1s from '@/components/Parts/Part-1'
 import Part2s from '@/components/Parts/Part-2'
 import { iframeMessage } from '@shared/utils'
-import BGM from '../BGM'
 import YoutubeSheet from '../YoutubeSheet'
 
 const Parts = () => {
@@ -36,7 +35,11 @@ const Parts = () => {
       { title: '꿈이란 무엇일까?', page: 106, depth: 2 },
       { title: '꿈에 대한 정신의학적 해석', page: 107, depth: 2 },
       { title: "'트라우마 환불 요청' 에피소드", page: 108, depth: 2 },
-      { title: "'익명의 손님께서 당신에게 보낸 꿈' 에피소드", page: 109, depth: 2 },
+      {
+        title: "'익명의 손님께서 당신에게 보낸 꿈' 에피소드",
+        page: 109,
+        depth: 2
+      },
       { title: "'체험판 출시 : 타인의 삶' 에피소드", page: 110, depth: 2 },
       { title: '본인의 삶 사랑하기', page: 111, depth: 2 },
       { title: '마무리', page: 112, depth: 2 }
@@ -78,10 +81,7 @@ const Parts = () => {
       }
     }
 
-    iframeMessage.receive((
-      channel = '',
-      payload: any
-    ) => {
+    iframeMessage.receive((channel = '', payload: any) => {
       if (channel === 'currentPage') setCurrentPage(() => payload)
       if (channel === 'totalPage') setTotalPage(() => payload)
       if (channel === 'toggleAppbar') setOpenAppbar(() => payload)
@@ -93,10 +93,13 @@ const Parts = () => {
   }, [])
 
   return (
-    <Wrapper className={`${mounted ? 'mounted' : ''} ${openAppbar ? 'is-appbar-open' : ''} ${openModal ? 'is-modal-open' : ''}`}>
+    <Wrapper
+      className={`${mounted ? 'mounted' : ''} ${
+        openAppbar ? 'is-appbar-open' : ''
+      } ${openModal ? 'is-modal-open' : ''}`}>
       <Swiper
         speed={400}
-        onSwiper={(core) => swiperRef.current = core}
+        onSwiper={(core) => (swiperRef.current = core)}
         touchEventsTarget={'container'}
         onSlideChange={() => {
           if (swiperRef.current) {
@@ -105,10 +108,13 @@ const Parts = () => {
             iframeMessage.post('currentPage', activeIndex)
           }
         }}
-        initialSlide={currentPage}
-      >
-        <SwiperSlide><Cover /></SwiperSlide>
-        <SwiperSlide><Opening /></SwiperSlide>
+        initialSlide={currentPage}>
+        <SwiperSlide>
+          <Cover />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Opening />
+        </SwiperSlide>
         {Part1s.map((Page, i) => {
           if (typeof Page === 'function') {
             return (
@@ -150,7 +156,6 @@ const Parts = () => {
           )
         })}
       </Swiper>
-      <BGM currentPage={currentPage} />
       <YoutubeSheet currentPage={currentPage}></YoutubeSheet>
     </Wrapper>
   )
@@ -165,13 +170,13 @@ const Wrapper = styled.div`
   margin: 0 auto;
   opacity: 0;
   pointer-events: none;
-  transition: .24s;
+  transition: 0.24s;
   .swiper {
     position: relative;
     margin: 0 auto;
     overflow: hidden;
     &::before {
-      content: "";
+      content: '';
       position: fixed;
       left: 0;
       top: 0;
@@ -191,7 +196,7 @@ const Wrapper = styled.div`
     flex-shrink: 0;
     max-height: 100vh;
     overflow: auto;
-    overscroll-behavior-y: none;    
+    overscroll-behavior-y: none;
     > div {
       width: 100%;
     }

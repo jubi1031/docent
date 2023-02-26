@@ -6,7 +6,7 @@ type CheckListProps = {
 }
 
 type CheckItemProps = {
-  children: ReactNode,
+  children: ReactNode
   onChange?: (checked: boolean) => void
 }
 
@@ -14,20 +14,15 @@ type CheckedProps = {
   checked: boolean
 }
 
-const Checked = ({
-  checked = false
-}: CheckedProps) => {
+const Checked = ({ checked = false }: CheckedProps) => {
   return (
     <Checkbox>
-      <input type="checkbox" checked={checked} onChange={() => { }} />
+      <input type="checkbox" checked={checked} onChange={() => {}} />
     </Checkbox>
   )
 }
 
-const CheckItem = ({
-  children,
-  onChange = () => { }
-}: CheckItemProps) => {
+const CheckItem = ({ children, onChange = () => {} }: CheckItemProps) => {
   const textRef = useRef(null)
   const [lineCount, setLineCount] = useState(0)
   const [lineWidth, setLineWidth] = useState(0)
@@ -54,26 +49,24 @@ const CheckItem = ({
       onClick={(event) => {
         event.stopPropagation()
         setChecked(!checked)
-      }}
-    >
+      }}>
       <Checked checked={checked} />
-      {!checked && (new Array(lineCount).fill(null)).map((_, i) => (
-        <Skeleton
-          key={i}
-          style={{
-            width: `${lineWidth / (i + 1)}px`,
-            top: `${18 + (18 * i)}px`
-          }}
-        />
-      ))}
+      {!checked &&
+        new Array(lineCount).fill(null).map((_, i) => (
+          <Skeleton
+            key={i}
+            style={{
+              width: `${lineWidth / (i + 1)}px`,
+              top: `${18 + 18 * i}px`
+            }}
+          />
+        ))}
       <Text ref={textRef}>{children}</Text>
     </Item>
   )
 }
 
-const CheckList = ({
-  children
-}: CheckListProps) => {
+const CheckList = ({ children }: CheckListProps) => {
   return (
     <Wrapper>
       <Paragraph>버튼을 눌러 인물의 특징을 살펴보세요.</Paragraph>
@@ -87,7 +80,7 @@ const Wrapper = styled.div`
 `
 
 const Text = styled.span`
-  opacity: 0;  
+  opacity: 0;
   pointer-events: none;
   word-break: keep-all;
 `
@@ -116,7 +109,7 @@ const Item = styled(motion.div)`
   &.is-checked {
     ${Text} {
       opacity: 1;
-      transition: .36s;
+      transition: 0.36s;
       pointer-events: auto;
     }
   }
@@ -130,15 +123,15 @@ const Checkbox = styled.label`
     display: none;
   }
   &::before {
-    content: "";
+    content: '';
     display: block;
     width: 18px;
     height: 18px;
-    border: 2px solid #FFEB60;
+    border: 2px solid #ffeb60;
     border-radius: 2px;
   }
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     left: 50%;
     top: 50%;
@@ -152,11 +145,11 @@ const Checkbox = styled.label`
 
   .is-checked & {
     &::before {
-      background-color: #FFEB60;
+      background-color: #ffeb60;
     }
     &::after {
       opacity: 1;
-    }    
+    }
   }
 `
 

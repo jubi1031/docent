@@ -5,19 +5,17 @@ import React, { ReactNode, useEffect, useContext, useState } from 'react'
 import styled from 'styled-components'
 import { motion, AnimatePresence, useScroll } from 'framer-motion'
 import { clamp } from '@shared/utils'
-import {
-  MIN_VIEWPORT,
-  MAX_VIEWPORT
-} from '@/constants'
+import { MIN_VIEWPORT, MAX_VIEWPORT } from '@/constants'
 import { iframeMessage } from '@shared/utils'
 
 import Features from './Features'
 import Details from './Details'
 
 type ModalProps = {
-  children?: ReactNode,
-  isVisible?: boolean,
-  onClose?: () => void,
+  children?: ReactNode
+  isVisible?: boolean
+  onClick?: (event: React.MouseEvent) => void
+  onClose?: () => void
   backdrop?: string
 }
 
@@ -27,19 +25,29 @@ const CloseIcon = () => (
     height="24"
     viewBox="0 0 24 24"
     fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path fillRule="evenodd" clipRule="evenodd" d="M17.2929 18.7071C17.6834 19.0976 18.3166 19.0976 18.7071 18.7071C19.0976 18.3166 19.0976 17.6834 18.7071 17.2929L13.4142 12L18.7071 6.70711C19.0976 6.31658 19.0976 5.68342 18.7071 5.29289C18.3166 4.90237 17.6834 4.90237 17.2929 5.29289L12 10.5858L6.70711 5.29289C6.31658 4.90237 5.68342 4.90237 5.29289 5.29289C4.90237 5.68342 4.90237 6.31658 5.29289 6.70711L10.5858 12L5.29289 17.2929C4.90237 17.6834 4.90237 18.3166 5.29289 18.7071C5.68342 19.0976 6.31658 19.0976 6.70711 18.7071L12 13.4142L17.2929 18.7071Z" fill="white"/>
+    xmlns="http://www.w3.org/2000/svg">
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M17.2929 18.7071C17.6834 19.0976 18.3166 19.0976 18.7071 18.7071C19.0976 18.3166 19.0976 17.6834 18.7071 17.2929L13.4142 12L18.7071 6.70711C19.0976 6.31658 19.0976 5.68342 18.7071 5.29289C18.3166 4.90237 17.6834 4.90237 17.2929 5.29289L12 10.5858L6.70711 5.29289C6.31658 4.90237 5.68342 4.90237 5.29289 5.29289C4.90237 5.68342 4.90237 6.31658 5.29289 6.70711L10.5858 12L5.29289 17.2929C4.90237 17.6834 4.90237 18.3166 5.29289 18.7071C5.68342 19.0976 6.31658 19.0976 6.70711 18.7071L12 13.4142L17.2929 18.7071Z"
+      fill="white"
+    />
   </svg>
 )
 
 const Modal = ({
   children,
   isVisible,
+  onClick,
   onClose = () => {},
   backdrop
-}: ModalProps) => {  
+}: ModalProps) => {
   const [sticky, setSticky] = useState(false)
+
+  const handleClick = (event: React.MouseEvent) => {
+    event.stopPropagation()
+    onClick?.(event)
+  }
 
   useEffect(() => {
     const img = new Image()
@@ -59,24 +67,27 @@ const Modal = ({
         <Wrapper
           backdrop={backdrop}
           initial={{ opacity: 0, scale: 0.8 }}
-          transition={{ type: 'spring', duration: .36 }}
+          transition={{ type: 'spring', duration: 0.36 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
           className="swiper-no-swiping"
-        >
-          <Header className={ sticky ? 'is-sticky' : '' }>
-            <Close type="button" onClick={(event) => {
-              event.stopPropagation()
-              onClose()
-            }}>
+          onClick={handleClick}>
+          <Header className={sticky ? 'is-sticky' : ''}>
+            <Close
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation()
+                onClose()
+              }}>
               <CloseIcon />
               <span className="sr-only">닫기</span>
             </Close>
           </Header>
-          <Body onScroll={(event) => {
-            const target = event.target as HTMLElement
-            setSticky(!!target.scrollTop)
-          }}>
+          <Body
+            onScroll={(event) => {
+              const target = event.target as HTMLElement
+              setSticky(!!target.scrollTop)
+            }}>
             {children}
           </Body>
         </Wrapper>
@@ -97,7 +108,7 @@ const Wrapper = styled(motion.div)<{ backdrop: string }>`
   background-color: rgba(0, 0, 0, 0.5);
   text-align: left;
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     top: 0;
@@ -107,10 +118,10 @@ const Wrapper = styled(motion.div)<{ backdrop: string }>`
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: cover;
-    pointer-events: none;  
+    pointer-events: none;
   }
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     top: 0;
@@ -129,7 +140,7 @@ const Header = styled.div`
   align-items: center;
   justify-content: flex-end;
   height: 44px;
-  transition: .24s;
+  transition: 0.24s;
   &.is-sticky {
     background-color: #fff;
   }
@@ -166,7 +177,7 @@ const Close = styled.button`
     path {
       fill: #242424;
     }
-  }  
+  }
 `
 
 Modal.Features = Features

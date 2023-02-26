@@ -62,6 +62,11 @@ const Opening = ({}: OpeningProps) => {
     setOpenModal(true)
   }
 
+  const handleCloseModal = () => {
+    modalContent.current = null
+    setOpenModal(false)
+  }
+
   return (
     <Wrapper>
       <Intro>
@@ -167,47 +172,45 @@ const Opening = ({}: OpeningProps) => {
           </Inner>
         </Body>
       </Intro>
-      <Swiper modules={[Pagination]} pagination={{ clickable: true }}>
-        <Modal
-          backdrop={'/images/opening/doctor.jpg'}
-          isVisible={openModal}
-          onClose={() => setOpenModal(false)}>
-          <Modal.Features>
-            <img src="/images/opening/doctor.jpg" width="50%" alt="" />
-          </Modal.Features>
-          <Modal.Details>
-            {/* Greeting */}
-            {modalContent.current === 'greeting' && (
-              <WriterDetails>
-                <strong>양재웅웅웅!!!</strong>
-                <span>정신과 전문의</span>
-                <p>
-                  정신의학 전문이며 W진병원 대표원장이다.
-                  <br />
-                  현재는 방송인을 겸하고 있으며
-                  <br />
-                  미스틱스토리에 소속되어있다.
-                </p>
-              </WriterDetails>
-            )}
+      <Modal
+        backdrop={'/images/opening/doctor.jpg'}
+        isVisible={openModal}
+        onClose={handleCloseModal}>
+        <Modal.Features>
+          <img src="/images/opening/doctor.jpg" width="50%" alt="" />
+        </Modal.Features>
+        <Modal.Details>
+          {/* Greeting */}
+          {modalContent.current === 'greeting' && (
+            <WriterDetails>
+              <strong>양재웅웅웅!!!</strong>
+              <span>정신과 전문의</span>
+              <p>
+                정신의학 전문이며 W진병원 대표원장이다.
+                <br />
+                현재는 방송인을 겸하고 있으며
+                <br />
+                미스틱스토리에 소속되어있다.
+              </p>
+            </WriterDetails>
+          )}
 
-            {/* Introducing */}
-            {modalContent.current === 'introducing' && (
-              <WriterDetails>
-                <strong>양재웅</strong>
-                <span>정신과 전문의</span>
-                <p>
-                  정신의학 전문이며 W진병원 대표원장이다.
-                  <br />
-                  현재는 방송인을 겸하고 있으며
-                  <br />
-                  미스틱스토리에 소속되어있다.
-                </p>
-              </WriterDetails>
-            )}
-          </Modal.Details>
-        </Modal>
-      </Swiper>
+          {/* Introducing */}
+          {modalContent.current === 'introducing' && (
+            <WriterDetails>
+              <strong>양재웅</strong>
+              <span>정신과 전문의</span>
+              <p>
+                정신의학 전문이며 W진병원 대표원장이다.
+                <br />
+                현재는 방송인을 겸하고 있으며
+                <br />
+                미스틱스토리에 소속되어있다.
+              </p>
+            </WriterDetails>
+          )}
+        </Modal.Details>
+      </Modal>
     </Wrapper>
   )
 }

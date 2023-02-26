@@ -127,7 +127,7 @@ const Opening = ({
             </Swiper>
             <Buttons>
               <Button type="button" onClick={() => swiperRef.current.slideTo(2, 0)}>스토리 보기<ArrawIcon /></Button>
-              <Button type="button" onClick={() => swiperRef.current.slideTo(104, 0)}>해설 보기<ArrawIcon /></Button>
+              <Button type="button" onClick={() => swiperRef.current.slideTo(103, 0)}>해설 보기<ArrawIcon /></Button>
             </Buttons>
           </Inner>
         </Body>

@@ -5,14 +5,8 @@ type CommentaryProps = {
   children?: ReactNode
 }
 
-const Message = ({
-  children
-}: CommentaryProps) => {
-  return (
-    <Wrapper>
-      {children}
-    </Wrapper>
-  )
+const Message = ({ children }: CommentaryProps) => {
+  return <Wrapper>{children}</Wrapper>
 }
 
 const Wrapper = styled.div`
@@ -32,68 +26,62 @@ const All = styled.div`
 const Background = styled.div`
   height: 900px;
   background-position: top;
-  content: "";
+  content: '';
   position: relative;
-  background-image: url("/images/part2/C1_0.jpg");
+  background-image: url('/images/part2/C1_0.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  pointer-events: none;  
-
+  pointer-events: none;
 `
 
 const BackgroundH = styled.div`
   background-position: top;
-  content: "";
+  content: '';
   position: relative;
   background-repeat: no-repeat;
   background-size: cover;
-  pointer-events: none;  
-  z-index:1;
+  pointer-events: none;
+  z-index: 1;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     top: 0;
     right: 0;
     bottom: 0;
-    z-index:-1;
+    z-index: -1;
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(18px);
     pointer-events: none;
     min-height: 100vh;
-    
   }
 `
 
-
 const NameL = styled.div`
-    display: inline-block;
-    margin-left: 5px;
-    margin-bottom: 3px;
-    width: 150px;
-    float: left;
-    flex-direction: column;
-    gap: 5px;
-    color: white;
+  display: inline-block;
+  margin-left: 5px;
+  margin-bottom: 3px;
+  width: 150px;
+  flex-direction: column;
+  gap: 5px;
+  color: white;
 `
 
 const NameR = styled.div`
-    display: inline-block;
-    margin-right: 5px;
-    margin-bottom: 3px;
-    width: 200px;
-    float: right;
-    text-align: right;
-    flex-direction: column;
-    gap: 5px;
-    color: white;
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 3px;
+  width: 200px;
+  text-align: right;
+  flex-direction: column;
+  gap: 5px;
+  color: white;
 `
 const blockL = styled.div`
-    display: inline-block;
-    float: left;
-    width: 40px;
-    height: 50px;
+  display: inline-block;
+  width: 40px;
+  height: 50px;
 `
 
 const ChatWrapper = styled.div`
@@ -104,7 +92,8 @@ const ChatWrapper = styled.div`
   padding: 13px 15px;
   border-radius: 20px;
   background-color: white;
-  font-family: 'SpoqaHanSansNeo-Regular';
+  font-family: 'Spoqa Han Sans Neo';
+  font-weight: 500;
 `
 const ChatWrapperF = styled.div`
   display: inline-block;
@@ -114,53 +103,49 @@ const ChatWrapperF = styled.div`
   padding: 0px 15px 10px 15px;
   border-radius: 20px;
   background-color: white;
-  font-family: 'SpoqaHanSansNeo';
+  font-family: 'Spoqa Han Sans Neo';
 `
 
 const ChatWrapperRF = styled.div`
   display: inline-block;
-  float: right;
   margin-bottom: 5px;
   align-items: flex-end;
   gap: 5px;
   padding: 0px 15px 10px 15px;
   border-radius: 20px;
-  background-color: #FFEB60;
-  font-family: 'SpoqaHanSansNeo';
+  background-color: #ffeb60;
+  font-family: 'Spoqa Han Sans Neo';
 `
 const ChatWrapperR = styled.div`
   display: inline-block;
-  float: right;
   margin-bottom: 5px;
   margin-right: 40px;
   align-items: flex-end;
   gap: 5px;
   padding: 10px 15px;
   border-radius: 20px;
-  background-color: #FFEB60;
-  font-family: 'SpoqaHanSansNeo';
+  background-color: #ffeb60;
+  font-family: 'Spoqa Han Sans Neo';
 `
 
 const ProfileImageL = styled.img`
   display: inline-block;
-  float: left;
   width: 40px;
   height: 40px;
   border-radius: 15px;
   object-fit: cover;
   opacity: ${({ selected }: { selected?: boolean }) =>
-    selected ? "50%" : "100%"};
+    selected ? '50%' : '100%'};
 `
 
 const ProfileImageR = styled.img`
   display: inline-block;
-  float: Right;
   width: 40px;
   height: 40px;
   border-radius: 30px;
   object-fit: cover;
   opacity: ${({ selected }: { selected?: boolean }) =>
-    selected ? "50%" : "100%"};
+    selected ? '50%' : '100%'};
 `
 
 const ImageL = styled.img`
@@ -173,7 +158,7 @@ const ImageL = styled.img`
   border-radius: 30px;
   object-fit: cover;
   opacity: ${({ selected }: { selected?: boolean }) =>
-    selected ? "50%" : "100%"};
+    selected ? '50%' : '100%'};
 `
 
 const ImageR = styled.img`
@@ -187,7 +172,7 @@ const ImageR = styled.img`
   border-radius: 30px;
   object-fit: cover;
   opacity: ${({ selected }: { selected?: boolean }) =>
-    selected ? "50%" : "100%"};
+    selected ? '50%' : '100%'};
 `
 
 const Next = styled.div`
@@ -207,7 +192,7 @@ const Head = styled.div`
 const BoxC = styled.div`
   display: block;
   margin: 0 auto;
-  text-align: center; 
+  text-align: center;
 `
 
 const Box = styled.div`
@@ -216,7 +201,7 @@ const Box = styled.div`
   text-align: center;
   background-color: rgba(0, 0, 0, 0.28);
   color: white;
-  font-family: 'SpoqaHanSansNeo';
+  font-family: 'Spoqa Han Sans Neo';
   font-size: 15px;
   width: auto;
   padding: 10px 20px;
@@ -234,7 +219,7 @@ const MarkL = styled.div`
   background-color: white;
   border-radius: 0px 15px 0px 0px;
   transform: skewX(15deg);
-  z-index:5;
+  z-index: 5;
 `
 
 const MarkR = styled.div`
@@ -245,13 +230,11 @@ const MarkR = styled.div`
   right: -101%;
   height: 13px;
   width: 10px;
-  background-color: #FFEB60;
+  background-color: #ffeb60;
   border-radius: 15px 0px 0px 0px;
   transform: skewX(-15deg);
-  z-index:5;
+  z-index: 5;
 `
-
-
 
 Message.ProfileImageL = ProfileImageL
 Message.NameL = NameL
@@ -276,6 +259,5 @@ Message.Head = Head
 Message.Background = Background
 Message.BackgroundH = BackgroundH
 Message.All = All
-
 
 export default Message

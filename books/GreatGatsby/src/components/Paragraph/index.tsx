@@ -1,27 +1,18 @@
 import { ReactNode } from 'react'
 import styled from 'styled-components'
 import { clamp } from '@shared/utils'
-import {
-  MIN_VIEWPORT,
-  MAX_VIEWPORT
-} from '@/constants'
+import { MIN_VIEWPORT, MAX_VIEWPORT } from '@/constants'
 
 type ParagraphProps = {
   children: ReactNode
 }
 
-const Paragraph = ({
-  children
-}: ParagraphProps) => {
-  return (
-    <Wrapper>
-      {children}
-    </Wrapper>
-  )
+const Paragraph = ({ children }: ParagraphProps) => {
+  return <Wrapper>{children}</Wrapper>
 }
 
 const Wrapper = styled.p`
-  font-family: 'SpoqaHanSansNeo';
+  font-family: 'Spoqa Han Sans Neo';
   ${clamp('font-size', [MIN_VIEWPORT, MAX_VIEWPORT, 17])};
   ${clamp('line-height', [MIN_VIEWPORT, MAX_VIEWPORT, 29.5])};
   padding: 0 16px;

@@ -8,14 +8,23 @@ export interface Messages {
   messages: string[]
 }
 
+export interface Explanations {
+  explanations: string[]
+}
+
+
+interface KakaoTalkProps {
+  explanations: Explanations[]
+}
 interface KakaoTalkProps {
   messages: Messages[]
 }
 
+
 const KakaoTalk = (props: KakaoTalkProps) => {
   const $contents = useRef<HTMLDivElement>(null)
   const index = useRef(0)
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(-1)
   const [appbar, setAppbar] = useState(false)
 
   const handleClick = (event: React.MouseEvent) => {
@@ -202,7 +211,6 @@ const Name = styled.p`
 const Message = styled.li`
   width: fit-content;
   max-width: 245px;
-
   padding: 14px 20px;
   border-radius: 20px;
   background-color: white;
@@ -224,6 +232,18 @@ const Message = styled.li`
       opacity: 1;
     }
   }
+
+  animation: appear 0.4s ease-in-out;
+`
+const Explanation = styled.li`
+  width: fit-content;
+  max-width: 260px;
+  padding: 14px 20px;
+  border-radius: 20px;
+  background-color: black;
+  opacity:0.8;
+                                          
+  user-select: none;
 
   animation: appear 0.4s ease-in-out;
 `

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { iframeMessage } from '@shared/utils'
 import { MIN_VIEWPORT, MAX_VIEWPORT } from '@/constants'
 import { clamp } from '@shared/utils'
-import KakaoTalk, { Messages } from '@/components/KakaoTalk'
+import KakaoTalk, { Explanations, Messages } from '@/components/KakaoTalk'
 import { useSound } from '@shared/hooks'
 
 const P1_0 = () => {
@@ -28,7 +28,7 @@ const P1_0 = () => {
 
   ]
 
-  return <KakaoTalk messages={messages} />
+  return <KakaoTalk messages={messages} explanations={[]} />
 }
 
 const P1_1 = () => {
@@ -55,7 +55,7 @@ const P1_1 = () => {
     },
   ]
 
-  return <KakaoTalk messages={messages} />
+  return <KakaoTalk messages={messages} explanations={[]} />
   /*
     <ParagraphM>
       <Message.Background>
@@ -224,7 +224,7 @@ const P1_2 = () => {
     }
   ]
 
-  return <KakaoTalk messages={messages} />
+  return <KakaoTalk messages={messages} explanations={[]} />
 }
 /*<ParagraphM>
   <Message.Background>
@@ -582,7 +582,10 @@ const P1_3 = () => {
     },
 
   ]
-  return <KakaoTalk messages={messages} />
+
+  const explanations: Explanations[] = []
+
+  return <KakaoTalk messages={messages} explanations={explanations} />
 }
 /*
 <ParagraphM>
@@ -821,41 +824,13 @@ const P1_4 = () => {
         '근데 그러면 각자\n병이 깊어지는 경우가 \n많은 것 같아요.',
         '그 고인에 대해서 우리가\n아무렇지 않게 드러낼 수\n있어야 되고,\n그 추억을 같이 갖고 있는\n사람들하고 공유할 수 있을 때\n우리는 그 상실감에서\n벗어날 수가 있게 돼요.',
         '근데 그거를 꾹꾹 눌러놓고\n열면 안되는 어떤 상자라고\n생각을 하면서 자꾸 자꾸\n치워놓기 시작을 하면,\n오히려 관련된 우울감이\n더 커질 수 밖에 없는 것 같아서\n그거를 회상하는 것도 좋고,',
-        '특히나 중요한 것은\n 그 추억을 같이 공유할 수 있는 사람들하고 충분히 얘기하실 수 있는\n그런 환경ㅇ르 갖추는게\n제일 필요할 것 같습니다.']
+        '특히나 중요한 것은\n 그 추억을 같이 공유할 수 있는 사람들하고 충분히 얘기하실 수 있는\n그런 환경을 갖추는게\n제일 필요할 것 같습니다.']
 
     },
   ]
 
-  return <KakaoTalk messages={messages} />
+  return <KakaoTalk messages={messages} explanations={[]} />
 }
-/*<ParagraphM>
-  <Message.Background>
-    <Message.BackgroundH>
-      <Message.All>
-        <Message.Head></Message.Head>
-      
-       
-        
-      
-        <Message.Next></Message.Next>
-
-        <NextTalk
-          onClick={(event) => {
-            event.stopPropagation()
-            iframeMessage.post('nativeMessage', {
-              channel: 'openWebview',
-              message: {
-                url: 'https://millie.page.link/j6pCF'
-              }
-            })
-          }}>
-          다음 대화로 넘어가기 &nbsp;&gt;
-        </NextTalk>
-      </Message.All>
-    </Message.BackgroundH>
-  </Message.Background>
-</ParagraphM>*/
-
 
 const P1_5 = () => {
   const messages: Messages[] = [
@@ -867,10 +842,10 @@ const P1_5 = () => {
       user: 'yang',
       messages: ['타인의 삶이라는\n꿈에 대한 이야기였는데요.',
         '그 주인공은 이제\n자기의 삶에 대해서 \n나쁘진 않은데,\nTV속에 나오는 뭔가 화려하게\n사는 사람들을 보면',
-        '뭔가 잚소 살고 있는 것 같고,\n뭐라도 더 해야 될 것 같고,\n뭔가 불안하고...\n이렇게 비교하고 있는 그런\n주인공이었죠.',
+        '뭔가 잘못 살고 있는 것 같고,\n뭐라도 더 해야 될 것 같고,\n뭔가 불안하고...\n이렇게 비교하고 있는 그런\n주인공이었죠.',
         '그러다가 8년째\n무명생활을 겪고 있는\n아티스트의 삶을 사는\n꿈을 꾸게 돼요.',
         '그리고 그 8년이라는\n무명 세월 동안\n얼마나 힘든지에 대해서\n하룻밤의 꿈으로 느끼고,\n실제로 TV에 나오는 사람들이\n정말 많이 힘들었을 수 있겠구나\n라는 것을 공감할 수 있게 되고,',
-        '다음 날 출귾하는 길에 자기가\n얼마나 행복한 삶을\n영위하고 있는가에 대해서\n다시한번 확인하는 그런\n에피소드 였던거 같습니다.',
+        '다음 날 출근하는 길에 자기가\n얼마나 행복한 삶을\n영위하고 있는가에 대해서\n다시한번 확인하는 그런\n에피소드 였던거 같습니다.',
         "'알랭드 보통'이\n'불안'이라는 책에서 그런 말을 했었거든요.",
         '불안 책 사진',
         '예젼에 계급 사회일 때는 우리는\n훨씬 덜 불안했다.\n왜냐하면 내가 타고난\n계급을 가지고 주어진 대로\n살면 됐기 떄문에.',
@@ -882,7 +857,7 @@ const P1_5 = () => {
     },
   ]
 
-  return <KakaoTalk messages={messages} />
+  return <KakaoTalk messages={messages} explanations={[]} />
 
 
 }
@@ -895,7 +870,7 @@ const P1_6 = () => {
     {
       user: 'yang',
       messages: ['이런 분들이 공통점이\n비교를 많이 하는 게 있고,\n또 하나가 일하고 자기 자신을\n동일시해요.',
-        '그러니까 일적으로 성취를\n뭔가 막 하고 있을 때\n자긴느 굉장히 괜찮은 사람이라고\n생각을 하고요.',
+        '그러니까 일적으로 성취를\n뭔가 막 하고 있을 때\n자긴 굉장히 괜찮은 사람이라고\n생각을 하고요.',
         '마찬가지죠 사회적인 평판, 명망,\n이런 것들이 올라가면 자기는\n 괜찮다라고 생각을 하는 거죠.',
         '근데 참 슬픈 얘기예요.\n내가 일을 잘하지 못해도 뭔가\n남들이 나를 인정하지 않아도\n내가 나를 존중할 수 있어야 되고,\n내가 나를 사랑할 수\n있어야 되잖아요.\n근데 항상 명분이 필요한 거죠.',
         '바꿔 말하면 자기가 자기 자신한테 너무\n인색한 거죠.',
@@ -911,7 +886,7 @@ const P1_6 = () => {
     },
   ]
 
-  return <KakaoTalk messages={messages} />
+  return <KakaoTalk messages={messages} explanations={[]} />
 }
 
 const P1_7 = () => {
@@ -930,7 +905,7 @@ const P1_7 = () => {
     },
   ]
 
-  return <KakaoTalk messages={messages} />
+  return <KakaoTalk messages={messages} explanations={[]} />
 
 }
 
@@ -952,7 +927,7 @@ const P1_8 = () => {
     },
   ]
 
-  return <KakaoTalk messages={messages} />
+  return <KakaoTalk messages={messages} explanations={[]} />
 }
 
 const NextTalk = styled.button`

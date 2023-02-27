@@ -124,6 +124,7 @@ const TextDecoration = styled.span`
   margin-bottom: 14px;
   padding-bottom: 8px;
   font-family: 'Spoqa Han Sans Neo';
+  font-family: 'Spoqa Han Sans Neo';
   font-size: 14px;
   line-height: 20px;
   ${clamp('font-size', [MIN_VIEWPORT, MAX_VIEWPORT, 14])};

@@ -25,10 +25,12 @@ const KakaoTalk = (props: KakaoTalkProps) => {
 
   const scrollToBottom = () => {
     if ($contents.current === null) return
-    $contents.current.scrollTo({
-      top: $contents.current.scrollHeight,
-      behavior: 'smooth'
-    })
+    setTimeout(() => {
+      $contents.current.scrollTo({
+        top: $contents.current.scrollHeight + 69,
+        behavior: 'smooth'
+      })
+    }, 0)
   }
 
   useEffect(() => {
@@ -57,8 +59,8 @@ const KakaoTalk = (props: KakaoTalkProps) => {
                   {messages.map((message, j) => {
                     if (index.current > count) return null
                     if (index.current === count) scrollToBottom()
-
                     index.current += 1
+
                     return (
                       <Message key={j}>
                         {message.split('\n').map((str, k) => {

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import classNames from 'classnames'
 import { iframeMessage } from '@shared/utils'
+import Icons from '../Icons'
 
 export interface Messages {
   user: 'kim' | 'yang'
@@ -12,14 +13,12 @@ export interface Explanations {
   explanations: string[]
 }
 
-
 interface KakaoTalkProps {
   explanations: Explanations[]
 }
 interface KakaoTalkProps {
   messages: Messages[]
 }
-
 
 const KakaoTalk = (props: KakaoTalkProps) => {
   const $contents = useRef<HTMLDivElement>(null)
@@ -72,6 +71,7 @@ const KakaoTalk = (props: KakaoTalkProps) => {
 
                     return (
                       <Message key={j}>
+                        {j === 0 && <Icons.BalloonTail own={own} />}
                         {message.split('\n').map((str, k) => {
                           if (k === 0) {
                             return <span key={k}>{str}</span>
@@ -93,6 +93,7 @@ const KakaoTalk = (props: KakaoTalkProps) => {
           )
         })}
       </Contents>
+
       {!appbar && <ClickArea onClick={handleClick} />}
     </Wrapper>
   )
@@ -211,7 +212,11 @@ const Name = styled.p`
 const Message = styled.li`
   width: fit-content;
   max-width: 245px;
+
   padding: 14px 20px;
+
+  position: relative;
+
   border-radius: 20px;
   background-color: white;
 
@@ -234,15 +239,21 @@ const Message = styled.li`
   }
 
   animation: appear 0.4s ease-in-out;
+
+  > svg {
+    position: absolute;
+    top: 0;
+  }
 `
+
 const Explanation = styled.li`
   width: fit-content;
   max-width: 260px;
   padding: 14px 20px;
   border-radius: 20px;
   background-color: black;
-  opacity:0.8;
-                                          
+  opacity: 0.8;
+
   user-select: none;
 
   animation: appear 0.4s ease-in-out;

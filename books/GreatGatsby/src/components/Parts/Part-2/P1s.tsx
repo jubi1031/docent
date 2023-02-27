@@ -5,6 +5,7 @@ import { iframeMessage } from '@shared/utils'
 import { MIN_VIEWPORT, MAX_VIEWPORT } from '@/constants'
 import { clamp } from '@shared/utils'
 import KakaoTalk, { Explanations, Messages } from '@/components/KakaoTalk'
+import KakaoTalk, { Explanations, Messages } from '@/components/KakaoTalk'
 import { useSound } from '@shared/hooks'
 
 const P1_0 = () => {

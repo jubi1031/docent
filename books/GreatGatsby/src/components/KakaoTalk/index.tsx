@@ -199,7 +199,7 @@ const Name = styled.p`
 
 const Message = styled.li`
   width: fit-content;
-  max-width: 240px;
+  max-width: 245px;
 
   padding: 14px 20px;
   border-radius: 20px;

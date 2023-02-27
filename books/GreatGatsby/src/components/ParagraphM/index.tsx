@@ -21,7 +21,7 @@ const ParagraphM = ({
 }
 
 const WrapperM = styled.p`
-    font-family: 'SpoqaHanSansNeo-Regular';
+    font-family: 'SpoqaHanSansNeo';
     ${clamp('font-size', [MIN_VIEWPORT, MAX_VIEWPORT, 15])};
     ${clamp('line-height', [MIN_VIEWPORT, MAX_VIEWPORT, 23])};
     padding: 0;

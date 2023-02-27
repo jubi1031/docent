@@ -82,7 +82,7 @@ const Img1 = styled.img`
  height: 100%;
  transform: translate(-50%, 0);
  transition-duration: .6s;
- transition-delay: 1.2s;
+ transition-delay: 1.5s;
 `
 const Img2 = styled.img`
  position: absolute;
@@ -91,7 +91,7 @@ const Img2 = styled.img`
  height: 100%;
  transform: translate(-50%, 0);
  transition-duration: .6s;
- transition-delay: 2.4s;
+ transition-delay: 3s;
 `
 
 const SizeImg = styled.img`

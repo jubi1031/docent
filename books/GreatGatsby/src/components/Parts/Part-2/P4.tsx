@@ -32,9 +32,9 @@ const P4 = ({
               <SwiperSlide>
                 <Paragraph>
                   <Commentary.TextDecoration><Commentary.Quote>“&nbsp;</Commentary.Quote>정신의학적 시선으로 해설을 더한</Commentary.TextDecoration>
-                  <Commentary.TextDecoration>&lt; 달러구트 꿈 백화점 &gt;오디오 도슨트</Commentary.TextDecoration>
+                  <Commentary.TextDecoration>&lt;달러구트 꿈 백화점&gt; 오디오 도슨트</Commentary.TextDecoration>
                   <Commentary.TextDecoration>재미있게 들으셨나요?</Commentary.TextDecoration>
-                  <Commentary.TextDecoration>아래 버튼을 누르시면&lt; 달러구트 꿈 백화점 &gt;의</Commentary.TextDecoration>
+                  <Commentary.TextDecoration>아래 버튼을 누르시면&lt;달러구트 꿈 백화점&gt;의</Commentary.TextDecoration>
                   <Commentary.TextDecoration>전자책을 읽으실 수 있습니다.<Commentary.Quote>&nbsp;”</Commentary.Quote></Commentary.TextDecoration>
                 </Paragraph>
               </SwiperSlide>

@@ -16,7 +16,7 @@ const FixedButton = ({
       disabled={disabled}
       initial={{ opacity: 0, y: 20 }}
       transition={{ type: 'spring', duration: .36, delay: 0.35 }}
-      animate={{ opacity: 1, y: 0 }}      
+      animate={{ opacity: 1, y: 0 }}
       onClick={onClick}
     >확인</Wrapper>
   )
@@ -35,8 +35,8 @@ const Wrapper = styled(motion.button)`
   line-height: 24px;
   color: #242424;
   &[disabled] {
-    background-color: #adadad;
-    color: #fff;
+    background-color: #fff7bf;
+    color: #242424;
   }
 `
 

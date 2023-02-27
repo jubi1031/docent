@@ -114,7 +114,7 @@ const ChatWrapperF = styled.div`
   padding: 0px 15px 10px 15px;
   border-radius: 20px;
   background-color: white;
-  font-family: 'SpoqaHanSansNeo-Regular';
+  font-family: 'SpoqaHanSansNeo';
 `
 
 const ChatWrapperRF = styled.div`
@@ -126,7 +126,7 @@ const ChatWrapperRF = styled.div`
   padding: 0px 15px 10px 15px;
   border-radius: 20px;
   background-color: #FFEB60;
-  font-family: 'SpoqaHanSansNeo-Regular';
+  font-family: 'SpoqaHanSansNeo';
 `
 const ChatWrapperR = styled.div`
   display: inline-block;
@@ -138,7 +138,7 @@ const ChatWrapperR = styled.div`
   padding: 10px 15px;
   border-radius: 20px;
   background-color: #FFEB60;
-  font-family: 'SpoqaHanSansNeo-Regular';
+  font-family: 'SpoqaHanSansNeo';
 `
 
 const ProfileImageL = styled.img`
@@ -216,7 +216,7 @@ const Box = styled.div`
   text-align: center;
   background-color: rgba(0, 0, 0, 0.28);
   color: white;
-  font-family: 'SpoqaHanSansNeo-Regular';
+  font-family: 'SpoqaHanSansNeo';
   font-size: 15px;
   width: auto;
   padding: 10px 20px;

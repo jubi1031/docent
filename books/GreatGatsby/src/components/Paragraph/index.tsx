@@ -21,11 +21,11 @@ const Paragraph = ({
 }
 
 const Wrapper = styled.p`
-  font-family: 'SpoqaHanSansNeo-Regular';
+  font-family: 'SpoqaHanSansNeo';
   ${clamp('font-size', [MIN_VIEWPORT, MAX_VIEWPORT, 17])};
   ${clamp('line-height', [MIN_VIEWPORT, MAX_VIEWPORT, 29.5])};
   padding: 0 16px;
-  margin: 44px 0;
+  margin: 18px 0;
 `
 
 const Liner = styled.span`

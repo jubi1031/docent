@@ -52,7 +52,7 @@ const CommentaryBody = ({
       <Inner>
         {children}
       </Inner>
-    </Body>    
+    </Body>
   )
 }
 
@@ -77,10 +77,10 @@ const Wrapper = styled.div`
 
 const Header = styled.div`
   position: relative;
-  height: 216px;
+  height: 250px;
   background-image: #478EE1;
-  background-image: linear-gradient(180deg, #478EE1 0%, #6F73D3 100%);
-  background-image: url("/images/part2/noise.png"), linear-gradient(180deg, #478EE1 0%, #6F73D3 100%);
+  background-image: linear-gradient(180deg, #6ABAE7 0%, #4558BB 100%);
+  background-image: url("/images/part2/noise.png"), linear-gradient(180deg, #6ABAE7 0%, #4558BB 100%);
   background-repeat: no-repeat;
   background-position: 0 0;
   background-size: 100%;
@@ -132,22 +132,27 @@ const TextDecoration = styled.span`
   display: block;
   margin-bottom: 14px;
   padding-bottom: 8px;
+  font-family: 'SpoqaHanSansNeo';
   font-size: 14px;
   line-height: 20px;
   ${clamp('font-size', [MIN_VIEWPORT, MAX_VIEWPORT, 14])};
   ${clamp('line-height', [MIN_VIEWPORT, MAX_VIEWPORT, 20])};
-  border-bottom: 1px solid #DFDFDF;
+  border-bottom: 1px solid #dfdfdf;
   text-align: center;
   white-space: nowrap;
   color: #000;
 `
 
+
+
 const Quote = styled.span`
+font-family: 'SpoqaHanSansNeo';
   line-height: 1.125;
   font-size: 22px;
   ${clamp('font-size', [MIN_VIEWPORT, MAX_VIEWPORT, 22])};
   opacity: 0.6;
 `
+
 
 Commentary.Header = CommentaryHeader
 Commentary.Body = CommentaryBody

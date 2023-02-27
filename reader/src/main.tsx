@@ -32,23 +32,23 @@ global.loadDocentView = async ({
     config.sessionId = sessionId
 
     try {
-      const { history } = await getHistory({ bookSeq }) as { history: [{ location: '' }] }
+      const { history } = (await getHistory({ bookSeq })) as {
+        history: [{ location: '' }]
+      }
       if (history.length) {
         initialPage = Number(history[0].location) - 1
       }
-    } catch { }
+    } catch {}
   }
 
-  ReactDOM
-    .createRoot(document.getElementById('root') as HTMLElement)
-    .render(
-      <App
-        host={host}
-        bookSeq={bookSeq}
-        mode={mode}
-        initialPage={initialPage || 0}
-      />
-    )
+  ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+    <App
+      host={host}
+      bookSeq={bookSeq}
+      mode={mode}
+      initialPage={initialPage || 0}
+    />
+  )
 }
 
 // Dev.

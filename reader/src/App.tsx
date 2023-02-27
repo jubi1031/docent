@@ -41,12 +41,7 @@ const BackIcon = () => (
   </svg>
 )
 
-const App = ({
-  host = '',
-  bookSeq = '',
-  mode = '',
-  initialPage = 0
-}) => {
+const App = ({ host = '', bookSeq = '', mode = '', initialPage = 0 }) => {
   const [toggleAppbar, setToggleAppbar] = useState(false)
   const [currentPage, setCurrentPage] = useState(initialPage)
   const [totalPage, setTotalPage] = useState(0)
@@ -59,10 +54,7 @@ const App = ({
   const mountedRef = useRef(false)
 
   useEffect(() => {
-    iframeMessage.receive((
-      channel = '',
-      payload: any
-    ) => {
+    iframeMessage.receive((channel = '', payload: any) => {
       if (channel === 'openAppbar') setToggleAppbar(true)
       if (channel === 'closeAppbar') setToggleAppbar(false)
       if (channel === 'toggleAppbar') setToggleAppbar((toggle) => !toggle)
@@ -93,12 +85,12 @@ const App = ({
           }).then(() => {
             console.log('페이지 저장', currentPage + 1)
           })
-    
+
           // 일부 네이티브에서 필요로 하는 데이타 전송
           nativeMessage.post('location', {
             currentPage,
             totalPage,
-            viewPercent: Math.floor(currentPage / totalPage * 100)
+            viewPercent: Math.floor((currentPage / totalPage) * 100)
           })
         }
       }
@@ -121,7 +113,8 @@ const App = ({
 
   return (
     <Wrapper>
-      <GlobalStyles styles={`
+      <GlobalStyles
+        styles={`
         body {
           position: fixed;
           left: 0;
@@ -135,7 +128,8 @@ const App = ({
           touch-action: pan-x pan-y;
           overscroll-behavior-y: contain;
         }
-      `} />
+      `}
+      />
       <Appbar
         isOpen={toggleAppbar}
         leading={
@@ -202,7 +196,9 @@ const Title = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
-  font-family: 'SF Pro Display', -apple-system, system-ui, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  font-family: 'SF Pro Display', -apple-system, system-ui, 'Helvetica Neue',
+    'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
+    sans-serif;
   font-size: 14px;
   font-weight: 800;
   color: var(--text-01);
@@ -220,7 +216,7 @@ const TOC = styled.button`
     margin-right: 4px;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;    
+    text-overflow: ellipsis;
   }
   svg {
     min-width: 12px;

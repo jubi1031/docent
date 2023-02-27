@@ -211,6 +211,25 @@ export const Eraser = () => (
   </svg>
 )
 
+const BalloonTail = (props: { own: boolean }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="17.217"
+    height="17.433"
+    viewBox="0 0 17.217 17.433"
+    style={{
+      left: props.own ? 'auto' : '0',
+      right: props.own ? '0' : 'auto',
+      transform: `scaleX(${props.own ? -1 : 1})`
+    }}>
+    <path
+      d="M2035.177,560.041c-1.859.466-3.254,9.894,5.113,15.83s10.691-6.635,10.691-6.635-7.173-.639-10.691-3.608C2037.35,563.146,2036.07,559.818,2035.177,560.041Z"
+      transform="translate(-2033.764 -560.03)"
+      fill={props.own ? '#ffeb33' : '#fff'}
+    />
+  </svg>
+)
+
 export default {
   ReviewCheck,
   Review,
@@ -220,5 +239,6 @@ export default {
   Select,
   Speak,
   SpeakCheck,
-  Eraser
+  Eraser,
+  BalloonTail
 }

@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "pnpm --parallel -r dev",
     "dev": "pnpm --parallel -r dev",
     "build": "pnpm --parallel -r build",
     "squoosh": "tsx scripts/squoosh.ts"

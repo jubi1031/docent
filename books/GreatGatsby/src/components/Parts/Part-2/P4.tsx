@@ -92,33 +92,33 @@ const GoBook = styled.button`
 
 const Body = styled.div`
   .swiper {
-    margin: 0 auto;
-    overflow: hidden;
-  }
-  .swiper-wrapper {
-    display: flex;    
-  }
-  .swiper-slide {
-    flex-shrink: 0;
-  }
-  .swiper-pagination {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    margin-top: 4px;
-  }
-  .swiper-pagination-bullet {
-    display: block;
-    width: 5px;
-    height: 5px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+  .swiper - wrapper {
+  display: flex;
+}
+  .swiper - slide {
+  flex - shrink: 0;
+}
+  .swiper - pagination {
+  display: flex;
+  justify - content: center;
+  gap: 6px;
+  margin - top: 4px;
+}
+  .swiper - pagination - bullet {
+  display: block;
+  width: 5px;
+  height: 5px;
     ${clamp('width', [MIN_VIEWPORT, MAX_VIEWPORT, 5])};
     ${clamp('height', [MIN_VIEWPORT, MAX_VIEWPORT, 5])};
-    background-color: #DFDFDF;
-    border-radius: 50%;
-  }
-  .swiper-pagination-bullet-active {
-    background-color: #242424;
-  }
+  background - color: #DFDFDF;
+  border - radius: 50 %;
+}
+  .swiper - pagination - bullet - active {
+  background - color: #242424;
+}
 `
 
 export default P4

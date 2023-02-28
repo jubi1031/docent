@@ -1,13 +1,45 @@
-import ParagraphM from '../../ParagraphM'
-import Message from '../../Message'
 import styled from 'styled-components'
 import { iframeMessage } from '@shared/utils'
 import { MIN_VIEWPORT, MAX_VIEWPORT } from '@/constants'
 import { clamp } from '@shared/utils'
-import KakaoTalk, { Explanations, Messages } from '@/components/KakaoTalk'
+import KakaoTalk, { ImageBox, Comment, Messages } from '@/components/KakaoTalk'
 import { useSound } from '@shared/hooks'
+import { ConfigContext } from '@/components/ConfigContext'
+import { useContext, useEffect, useState } from 'react'
+import AudioButton from '@/components/AudioButton'
 
 const P1_0 = () => {
+  const { openModal, setOpenModal } = useContext(ConfigContext)
+  const [tutorial, setTutorial] = useState(false)
+  const [fixedButtonDisabled, setFixedButtonDisabled] = useState(0)
+
+  const [paused, setPaused] = useState(false)
+  const [_, secondHalfSound] = useSound({
+    src: 'sounds/P1-35.mp3',
+    volume: 0.5,
+    loop: false
+  })
+
+  const [messageEnd, setMessageEnd] = useState(false)
+
+  const handleToggleAudio = () => {
+    setPaused((prev) => {
+      if (prev) secondHalfSound.play()
+      else secondHalfSound.pause()
+      return !prev
+    })
+  }
+
+  useEffect(() => {
+    if (!openModal) {
+      setMessageEnd(false)
+    }
+  }, [openModal])
+
+  useEffect(() => {
+    secondHalfSound.stop()
+  }, [])
+
   const messages: Messages[] = [
     {
       user: 'kim',
@@ -21,14 +53,14 @@ const P1_0 = () => {
       user: 'yang',
       messages: [
         "저도 되게 재밌게 봤어요.\n동화나 이런 판타지물을 제가 좋아하는 건 아닌데,\n디즈니의 '인사이드 아웃'이나\n'유미의 세포들'이라는\n웹툰도 좀 생각이 났고요.",
-        '인사이드',
-        '유미',
+        <ImageBox src={`/images/part2/umi.png`} />,
+        <ImageBox src={`/images/part2/inside.png`} />,
         '기본적으로 인간의 어떤 \n심리를 다루는, \n그래서 그거에 대해서 공감대를 \n끌어낼 수 있는 작품이었기 \n때문에 저도 몰입을 해서 볼 수 \n있었던 것 같고 공감되는 부분도 많았고 \n감명 깊었던 부분도 \n있었던 것 같습니다.'
       ]
     }
   ]
 
-  return <KakaoTalk messages={messages} explanations={[]} />
+  return <KakaoTalk messages={messages} />
 }
 
 const P1_1 = () => {
@@ -45,7 +77,14 @@ const P1_1 = () => {
       user: 'yang',
       messages: [
         "'프로이트'의 꿈의 해석을 보면\n꿈이라는 거는 현재 내가 \n의식적으로 소화하기 어려운,\n그래서 무의식으로\n밀어놨던 것들이\n발현되는 거라고 얘기를 해요.",
-        '프로이드 사진',
+        <ImageBox src={`/images/part2/Freud.jpg`} />,
+        <Comment>
+          '지그문트 프로이트'
+          <br />
+          오스트리아의 생리학자.정신병리학자.
+          <br />
+          정신분석의 창시자.
+        </Comment>,
         "'지그문트 프로이트' 오스트리아의 생리학자, 정신병리학자, 정신분석의 창시자.",
         '의식적으로 소화하기 어렵다\n라는 건 뭐냐면,',
         "우리 인간이 이제'초자아'가 있고,\n'이드'라고 하는 본능이 있는데,'초자아'나'자아'같은 경우가\n현실에서 상식적으로 \n타인과 관계를 맺고 일을 할 수 있게 해주는,\n나의 어떤 정체성을 유지시켜주는 장치거든요.",
@@ -56,7 +95,7 @@ const P1_1 = () => {
     }
   ]
 
-  return <KakaoTalk messages={messages} explanations={[]} />
+  return <KakaoTalk messages={messages} />
 }
 
 const P1_2 = () => {
@@ -115,7 +154,7 @@ const P1_2 = () => {
     }
   ]
 
-  return <KakaoTalk messages={messages} explanations={[]} />
+  return <KakaoTalk messages={messages} />
 }
 const P1_3 = () => {
   const messages: Messages[] = [
@@ -125,7 +164,16 @@ const P1_3 = () => {
         '<달러구트 꿈 백화점>에 나오는\n에피소드와 관련해서\n이야기를 나눠볼까요?',
         '저는 선생님이 나오신다는\n얘기를 듣고 꼭 묻고 싶은\n부분이 있었어요.',
         "책의 한 에피소드로\n'트라우마'에 대한 이야기가\n나오거든요.",
-        '트라우마 사진 글',
+        <ImageBox src={`/images/part2/trauma.jpg`} />,
+        <Comment>
+          일반적인 의학용어로 '외상(physical trauma)'을'
+          <br />
+          뜻하지만, 심리학적으로
+          <br />
+          '정신적 외상(psychological trauma)'을 말한다.
+          <br />
+          여러가지 정신적인 장애의 원인이 될 수 있다"
+        </Comment>,
         '군대를 다녀온 사람이\n 군대를 다시 가는 꿈이라든가,\n시험에 대한 압박감이 심했던 \n사람이 학생으로 다시\n돌아가는 꿈 같은\n악몽을 꾼다는 내용인데요.',
         '실제로도 이런 악몽을 꾸는 분들\n많지 않나요?'
       ]
@@ -145,9 +193,7 @@ const P1_3 = () => {
     }
   ]
 
-  const explanations: Explanations[] = []
-
-  return <KakaoTalk messages={messages} explanations={explanations} />
+  return <KakaoTalk messages={messages} />
 }
 const P1_4 = () => {
   const messages: Messages[] = [
@@ -172,7 +218,7 @@ const P1_4 = () => {
     }
   ]
 
-  return <KakaoTalk messages={messages} explanations={[]} />
+  return <KakaoTalk messages={messages} />
 }
 
 const P1_5 = () => {
@@ -193,7 +239,14 @@ const P1_5 = () => {
         '그리고 그 8년이라는\n무명 세월 동안\n얼마나 힘든지에 대해서\n하룻밤의 꿈으로 느끼고,\n실제로 TV에 나오는 사람들이\n정말 많이 힘들었을 수 있겠구나\n라는 것을 공감할 수 있게 되고,',
         '다음 날 출근하는 길에 자기가\n얼마나 행복한 삶을\n영위하고 있는가에 대해서\n다시한번 확인하는 그런\n에피소드 였던거 같습니다.',
         "'알랭드 보통'이\n'불안'이라는 책에서 그런 말을 했었거든요.",
-        '불안 책 사진',
+        <ImageBox src={`/images/part2/unrest.jpg`} />,
+        <Comment>
+          일상의 철학자'알랭 드 보통'이 파헤친'불안'
+          <br />
+          그 원인과 해법, 행복한 인생을 살기 위한
+          <br />
+          방법이 담긴 현대인을 위한 철학서
+        </Comment>,
         '예젼에 계급 사회일 때는 우리는\n훨씬 덜 불안했다.\n왜냐하면 내가 타고난\n계급을 가지고 주어진 대로\n살면 됐기 떄문에.',
         '우리는 뭔가를 해야 된다라는\n압박과 강박 속에서 살지 않아도\n괜찮았다 라는 얘기를 합니다.',
         '우리가 지금 살고 있는\n세상은 끊임없이 나를\n불안하게 하잖아요.\n너무 많은 비교가 결국에\n내 행복을 갉아 먹는다\n라는 것을 여러분들이\n많이 인지하셨으면 좋겠어요.',
@@ -203,7 +256,7 @@ const P1_5 = () => {
     }
   ]
 
-  return <KakaoTalk messages={messages} explanations={[]} />
+  return <KakaoTalk messages={messages} />
 }
 const P1_6 = () => {
   const messages: Messages[] = [
@@ -228,12 +281,19 @@ const P1_6 = () => {
         "혹시\n이 오디오를 들으시는 분 중에서\n'내가 뭔가 남보다 부족하다.'거나\n'뭔가 더 열심히 \n살아야 될 것 같다.' 라고 스스로\n채찍질하고 불안해하고 계시는\n분들이 많이 있으시다면,",
         '남들이 뭐낙 바라는 혹은 남들이\n기대하는 삶이 아니라\n그리고 남들이 뭔가 평가하는\n그런 차원의 세상이 아나라,',
         '우리가 언제 죽을지 모르는 \n세상에 살고 있는 거라고 \n생각을 하시면서\n어떤 삶으로 이 생을 마치고\n싶은지에 대해서 글로 한번\n정리를 해보시면,',
-        '그게 여러분한테 좀 방향을\n설정하는 데 있어서 도움이\n될 것 같습니다.'
+        '그게 여러분한테 좀 방향을\n설정하는 데 있어서 도움이\n될 것 같습니다.',
+        <Comment>
+          본인이 정말 하고 싶은게 무엇인가?
+          <br />
+          10년,20년,30년 뒤 어떤 사람으로 있고 싶은가?
+          <br />
+          어떠한 삶으로 이 생을 마치고 싶은가?
+        </Comment>
       ]
     }
   ]
 
-  return <KakaoTalk messages={messages} explanations={[]} />
+  return <KakaoTalk messages={messages} />
 }
 
 const P1_7 = () => {
@@ -255,7 +315,7 @@ const P1_7 = () => {
     }
   ]
 
-  return <KakaoTalk messages={messages} explanations={[]} />
+  return <KakaoTalk messages={messages} />
 }
 
 const P1_8 = () => {
@@ -265,7 +325,7 @@ const P1_8 = () => {
       messages: [
         '어떤 인물이 읽고\n어떤 시선으로 보고\n어떻게 상상하느냐에 따라\n내용과 해석이 달라질 수 \n있는 것이 바로 책인데요.',
         '화면 아래 동영상을 클릭하시면\n<달러구트 꿈 백화점>을 읽은\n스타들이 만들어낸 특별한 상상 콘텐츠를 보실 수 있습니다.',
-        '동영상',
+        <ImageBox src={`/images/part2/unrest.jpg`} />,
         '수많은 상상력을 불러일으키는\n<달러구트 꿈 백화점>의\n또 다른 버전이 궁금하시다면\n클릭해 주세요.',
         '<달러구트 꿈 백화점>\n도슨트로 참여해 주신\n정신과 전문의 양재웅 선생님.\n오늘 너무 즐거운\n시간이었습니다.'
       ]
@@ -279,7 +339,7 @@ const P1_8 = () => {
     }
   ]
 
-  return <KakaoTalk messages={messages} explanations={[]} />
+  return <KakaoTalk messages={messages} />
 }
 
 const NextTalk = styled.button`
@@ -299,12 +359,6 @@ const NextTalk = styled.button`
   margin-bottom: 100px;
   font-family: 'Spoqa Han Sans Neo';
   font-weight: 500;
-`
-const img = styled.img`
-  width: 34px;
-  height: 34px;
-  border-radius: 4%;
-  user-select: none;
 `
 
 export default [P1_0, P1_1, P1_2, P1_3, P1_4, P1_5, P1_6, P1_7, P1_8]

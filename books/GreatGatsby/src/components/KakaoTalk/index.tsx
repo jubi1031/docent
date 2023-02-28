@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, ReactElement } from 'react'
 import styled from 'styled-components'
 import classNames from 'classnames'
 import { iframeMessage } from '@shared/utils'
@@ -6,18 +6,11 @@ import Icons from '../Icons'
 
 export interface Messages {
   user: 'kim' | 'yang'
-  messages: string[]
-}
-
-export interface Explanations {
-  explanations: string[]
-}
-
-interface KakaoTalkProps {
-  explanations: Explanations[]
+  messages: (string | ReactElement)[]
 }
 interface KakaoTalkProps {
   messages: Messages[]
+  setMessageEnd?: Function
 }
 
 const KakaoTalk = (props: KakaoTalkProps) => {
@@ -57,7 +50,6 @@ const KakaoTalk = (props: KakaoTalkProps) => {
 
           if (i === 0) index.current = 0
           if (index.current > count) return null
-
           return (
             <Messages key={i} className={classNames({ '--own': own })}>
               <Avatar src={`/images/part2/${avatar}`} />
@@ -68,24 +60,32 @@ const KakaoTalk = (props: KakaoTalkProps) => {
                     if (index.current > count) return null
                     if (index.current === count) scrollToBottom()
                     index.current += 1
-
-                    return (
-                      <Message key={j}>
-                        {j === 0 && <Icons.BalloonTail own={own} />}
-                        {message.split('\n').map((str, k) => {
-                          if (k === 0) {
-                            return <span key={k}>{str}</span>
-                          }
-
-                          return (
-                            <span key={k}>
-                              <br />
-                              {str}
-                            </span>
-                          )
-                        })}
-                      </Message>
+                    if (
+                      i === 1 &&
+                      j === messages.length - 1 &&
+                      props.setMessageEnd
                     )
+                      props.setMessageEnd(true)
+                    if (typeof message === 'string') {
+                      return (
+                        <Message key={j}>
+                          {j === 0 && <Icons.BalloonTail own={own} />}
+                          {message.split('\n').map((str, k) => {
+                            if (k === 0) {
+                              return <span key={k}>{str}</span>
+                            }
+
+                            return (
+                              <span key={k}>
+                                <br />
+                                {str}
+                              </span>
+                            )
+                          })}
+                        </Message>
+                      )
+                    }
+                    return <div key={j}>{message}</div>
                   })}
                 </ul>
               </div>
@@ -246,15 +246,21 @@ const Message = styled.li`
   }
 `
 
-const Explanation = styled.li`
-  width: fit-content;
-  max-width: 260px;
-  padding: 14px 20px;
+export const Comment = styled.div`
+  //268 80 20
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  border-radius: 10px;
+  padding: 10px 20px;
+  width: calc(100vw - 30px);
+  font-size: 14px;
+  text-align: center;
+  margin-right: -49px;
+  margin-left: -49px;
+`
+
+export const ImageBox = styled.img`
+  width: 200px;
+  height: 200px;
   border-radius: 20px;
-  background-color: black;
-  opacity: 0.8;
-
-  user-select: none;
-
-  animation: appear 0.4s ease-in-out;
 `

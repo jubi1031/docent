@@ -192,7 +192,11 @@ const Opening = ({}: OpeningProps) => {
           )} */}
 
       <Modal
-        backdrop={'/images/opening/doctor.jpg'}
+        backdrop={
+          modalContent.current === 'greeting'
+            ? '/images/opening/cover.png'
+            : '/images/opening/doctor.jpg'
+        }
         isVisible={openModal}
         onClose={handleCloseModal}>
         {modalContent.current === 'greeting' && <Greeting />}

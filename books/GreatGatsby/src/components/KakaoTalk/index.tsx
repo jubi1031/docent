@@ -5,7 +5,9 @@ import { iframeMessage } from '@shared/utils'
 import Icons from '../Icons'
 import { useSound } from '@shared/hooks'
 import AudioButton from '../AudioButton'
-
+import { motion } from 'framer-motion'
+import { MAX_VIEWPORT, MIN_VIEWPORT } from '@/constants'
+import { clamp } from '@shared/utils'
 export interface Messages {
   user?: 'kim' | 'yang'
   messages: (string | ReactElement)[]
@@ -57,6 +59,22 @@ const KakaoTalk = (props: KakaoTalkProps) => {
   }
 
   let scrolling = false
+
+  const ArrawIcon = () => (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M7 11L10 8L7 5"
+        stroke="white"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
 
   const scrollToBottom = () => {
     if ($contents.current === null) return
@@ -220,6 +238,7 @@ const Contents = styled.div`
 `
 
 const Messages = styled.div`
+  width: 100%;
   display: flex;
   gap: 0 6px;
 
@@ -347,4 +366,17 @@ export const ImageBox = styled.img`
   width: 200px;
   height: 200px;
   border-radius: 25px;
+`
+export const Button = styled(motion.button)`
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  line-height: 18px;
+  padding: 8px;
+  ${clamp('font-size', [MIN_VIEWPORT, MAX_VIEWPORT, 12])};
+  ${clamp('line-height', [MIN_VIEWPORT, MAX_VIEWPORT, 18])};
+  ${clamp('padding', [MIN_VIEWPORT, MAX_VIEWPORT, 8])};
+  color: #fff;
+  background-color: #333;
+  border-radius: 4px;
 `

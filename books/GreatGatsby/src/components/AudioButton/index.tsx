@@ -7,6 +7,7 @@ import { iframeMessage } from '@shared/utils'
 interface AudioButtonProps {
   paused: boolean
   onToggle: () => void
+  className?: string
 }
 
 const AudioButton = (props: AudioButtonProps) => {
@@ -34,10 +35,12 @@ const AudioButton = (props: AudioButtonProps) => {
     setVisible(props.paused || appbar)
   }, [props.paused, appbar])
 
+  const className = `${classNames({
+    '--visible': visible,
+    '--open-appbar': appbar
+  })} ${props.className}`
   return (
-    <Wrapper
-      className={classNames({ '--visible': visible, '--open-appbar': appbar })}
-      onClick={handleClickWrapper}>
+    <Wrapper className={className} onClick={handleClickWrapper}>
       <Sound type="button" onClick={handleToggle}>
         {!props.paused && (
           <svg

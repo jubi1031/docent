@@ -90,8 +90,7 @@ const Modal = ({
               onScroll={(event) => {
                 const target = event.target as HTMLElement
                 setSticky(!!target.scrollTop)
-              }}
-              >
+              }}>
               {children}
             </TalkInsideBody>
           ) : (
@@ -99,12 +98,10 @@ const Modal = ({
               onScroll={(event) => {
                 const target = event.target as HTMLElement
                 setSticky(!!target.scrollTop)
-              }}
-              >
+              }}>
               {children}
             </Body>
           )}
-          
         </Wrapper>
       )}
     </AnimatePresence>
@@ -192,7 +189,9 @@ const TalkInsideBody = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-  img { margin: unset!important; }
+  img {
+    margin: unset !important;
+  }
 `
 
 const Close = styled.button`

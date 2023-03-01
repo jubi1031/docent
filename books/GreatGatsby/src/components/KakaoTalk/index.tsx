@@ -261,16 +261,3 @@ const Message = styled.li`
     top: 0;
   }
 `
-
-const Explanation = styled.li`
-  width: fit-content;
-  max-width: 260px;
-  padding: 14px 20px;
-  border-radius: 20px;
-  background-color: black;
-  opacity: 0.8;
-
-  user-select: none;
-
-  animation: appear 0.4s ease-in-out;
-`

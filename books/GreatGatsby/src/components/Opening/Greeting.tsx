@@ -140,6 +140,7 @@ const Imgs = styled.div`
   position: relative;
   display: inline-flex;
   vertical-align: top;
+  pointer-events: none;
 `
 
 export default Greeting

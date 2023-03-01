@@ -70,6 +70,7 @@ const fade = keyframes`
 
 const Image = styled.img`
   animation: ${fade} 1.5s;
+  pointer-events: none;
 `
 
 const ButtonWrapper = styled.div`

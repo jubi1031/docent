@@ -1,8 +1,9 @@
-import { useContext, useRef } from 'react'
+import { useContext, useRef, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
 import { Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { useSound } from '@shared/hooks'
 import { clamp } from '@shared/utils'
 import Modal from '@/components/Modal'
 import { ConfigContext } from '@/components/ConfigContext'
@@ -51,10 +52,19 @@ const Opening = ({}: OpeningProps) => {
   const { swiperRef, openModal, setOpenModal } = useContext(ConfigContext)
   const isOpenModalCount = useRef(0)
 
+  const [paused, setPaused] = useState(false)
+  const [_, secondHalfSound] = useSound({
+    src: 'sounds/open.mp3',
+    volume: 0.5,
+    loop: false
+  })
+
   const handleOpenGreeting = (event: React.MouseEvent) => {
     event.stopPropagation()
     modalContent.current = 'greeting'
     setOpenModal(true)
+    setPaused(false)
+    secondHalfSound.play()
   }
 
   const handleOpenIntroducing = (event: React.MouseEvent) => {
@@ -67,6 +77,7 @@ const Opening = ({}: OpeningProps) => {
   const handleCloseModal = () => {
     modalContent.current = null
     setOpenModal(false)
+    secondHalfSound.stop()
   }
 
   return (
@@ -175,22 +186,6 @@ const Opening = ({}: OpeningProps) => {
         </Body>
       </Intro>
 
-      {/* backdrop={'/images/opening/announcer.jpg'}
-      <img src="/images/opening/doctor.jpg" width="50%" alt="" />
-      {modalContent.current === 'introducing' && (
-            <WriterDetails>
-              <strong>김해나</strong>
-              <span>아나운서</span>
-              <p>
-                2015년 인터넷스포츠방송으로 데뷔했고
-                <br />
-                2016년 TV에서 본격적으로 활동하기 시작했다.
-                <br />
-                유튜브 채널에서 &lt;라운드원&gt;랭킹쇼단독 MC를 맡기도 했다.
-              </p>
-            </WriterDetails>
-          )} */}
-
       <Modal
         backdrop={
           modalContent.current === 'greeting'
@@ -198,8 +193,15 @@ const Opening = ({}: OpeningProps) => {
             : '/images/opening/doctor.jpg'
         }
         isVisible={openModal}
-        onClose={handleCloseModal}>
-        {modalContent.current === 'greeting' && <Greeting />}
+        onClose={handleCloseModal}
+        talkInside>
+        {modalContent.current === 'greeting' && (
+          <Greeting
+            paused={paused}
+            setPaused={setPaused}
+            secondHalfSound={secondHalfSound}
+          />
+        )}
         {modalContent.current === 'introducing' && <Introducing />}
       </Modal>
     </Wrapper>

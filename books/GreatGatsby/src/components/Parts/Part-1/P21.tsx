@@ -14,6 +14,7 @@ type P21Props = {
   isCurrentPage: boolean
 }
 
+//카카오톡 메시지 내용
 const messages: Messages[] = [
   {
     user: 'kim',

@@ -342,23 +342,4 @@ const P1_8 = () => {
   return <KakaoTalk messages={messages} />
 }
 
-const NextTalk = styled.button`
-  display: block;
-  align-items: center;
-  justify-content: center;
-  padding: 5px 20px;
-  font-size: 14px;
-  line-height: 18px;
-  border: 1px solid #333333;
-  ${clamp('font-size', [MIN_VIEWPORT, MAX_VIEWPORT, 14])};
-  ${clamp('line-height', [MIN_VIEWPORT, MAX_VIEWPORT, 18])};
-  ${clamp('padding', [MIN_VIEWPORT, MAX_VIEWPORT, 5, 20])};
-  border-radius: 100px;
-  background-color: white;
-  margin: 0 auto;
-  margin-bottom: 100px;
-  font-family: 'Spoqa Han Sans Neo';
-  font-weight: 500;
-`
-
 export default [P1_0, P1_1, P1_2, P1_3, P1_4, P1_5, P1_6, P1_7, P1_8]

@@ -31,7 +31,7 @@ const messages: Messages[] = [
     ]
   },
   {
-    messages: ['화면을 터치하면 대화창이 나타납니다.']
+    messages: [<Comment>화면을 터치하면 대화창이 나타납니다.</Comment>]
   }
 ]
 

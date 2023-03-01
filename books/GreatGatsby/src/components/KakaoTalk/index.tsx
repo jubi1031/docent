@@ -215,23 +215,43 @@ const Messages = styled.div`
   display: flex;
   gap: 0 6px;
 
-  &.--own {
-    flex-direction: row-reverse;
-
-    > div > ul {
-      align-items: flex-end;
-    }
-  }
-
   > div {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 4px 0;
+    padding-right: 40px;
 
     > ul {
       display: flex;
       flex-direction: column;
       gap: 8px 0;
+
+      > div {
+        width: 100%;
+        display: flex;
+
+        > * {
+          flex: none;
+        }
+      }
+    }
+  }
+
+  &.--own {
+    flex-direction: row-reverse;
+
+    > div {
+      padding-right: 0;
+      padding-left: 40px;
+
+      > ul {
+        align-items: flex-end;
+
+        > div {
+          justify-content: flex-end;
+        }
+      }
     }
   }
 
@@ -304,16 +324,15 @@ const Message = styled.li`
 `
 
 export const Comment = styled.div<{ notice?: boolean }>`
-  //268 80 20
-  background: rgba(0, 0, 0, 0.4);
-  color: white;
-  border-radius: 10px;
+  margin: 0 auto;
   padding: 10px 20px;
-  width: calc(100vw - 30px);
+
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.4);
+
+  color: white;
   font-size: 14px;
   text-align: center;
-  margin-right: ${(props) => (props.notice ? 'unset' : `-49px`)};
-  margin-left: ${(props) => (props.notice ? 'unset' : `-49px`)};
 `
 
 export const ImageBox = styled.img`

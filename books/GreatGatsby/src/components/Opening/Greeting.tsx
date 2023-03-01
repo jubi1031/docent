@@ -106,11 +106,7 @@ const Greeting = (): any => {
         onClose={handleCloseModal}
         talkInside>
         {}
-        <KakaoTalk
-          messages={messages}
-          explanations={[]}
-          setMessageEnd={setMessageEnd}
-        />
+        <KakaoTalk messages={messages} setMessageEnd={setMessageEnd} />
         <FixedButton
           disabled={!messageEnd}
           onClick={(event) => {

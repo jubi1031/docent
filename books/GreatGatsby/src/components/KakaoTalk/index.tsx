@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import classNames from 'classnames'
 import { iframeMessage } from '@shared/utils'
 import Icons from '../Icons'
+import AudioButton from '../AudioButton'
 
 export interface Messages {
   user: 'kim' | 'yang'
@@ -12,6 +13,15 @@ interface KakaoTalkProps {
   messages: Messages[]
   setMessageEnd?: Function
 }
+
+const StyledAudioButton = styled(AudioButton)<{ isShowingAppbar: boolean }>`
+  padding: 0;
+  margin: 0;
+  top: 64px;
+  right: 16px;
+  top: ${(props) => (props.isShowingAppbar ? '64px' : '32px')};
+  position: absolute;
+`
 
 const KakaoTalk = (props: KakaoTalkProps) => {
   const $contents = useRef<HTMLDivElement>(null)
@@ -44,6 +54,12 @@ const KakaoTalk = (props: KakaoTalkProps) => {
   return (
     <Wrapper>
       <Contents ref={$contents}>
+        {/* TODO: IMPLEMENT your own paused state, onToggle action */}
+        <StyledAudioButton
+          isShowingAppbar={appbar}
+          paused={true}
+          onToggle={() => {}}
+        />
         {props.messages.map(({ user, messages }, i) => {
           const own = user === 'yang'
           const avatar = own ? 'Message2.jpg' : 'Message1.png'

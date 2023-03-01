@@ -319,7 +319,11 @@ const P1_8 = () => {
   const VideoContent = () => {
     return (
       <VideoWrapper>
-        <Video preload="metadata" src={`/videos/content.mp4#t=0.5`} controls />
+        <Video
+          preload="metadata"
+          src={`https://vimeo.com/802912359/eb54c86067`}
+          controls
+        />
         <VideoTitleWrapper>
           <VideoTitle>달러구트 꿈백화점 영상보기</VideoTitle>
           <ArrawIcon />
@@ -333,7 +337,7 @@ const P1_8 = () => {
       messages: [
         '어떤 인물이 읽고\n어떤 시선으로 보고\n어떻게 상상하느냐에 따라\n내용과 해석이 달라질 수 \n있는 것이 바로 책인데요.',
         '화면 아래 동영상을 클릭하시면\n<달러구트 꿈 백화점>을 읽은\n스타들이 만들어낸 특별한 상상 콘텐츠를 보실 수 있습니다.',
-        //<VideoContent />,
+        <VideoContent />,
         '수많은 상상력을 불러일으키는\n<달러구트 꿈 백화점>의\n또 다른 버전이 궁금하시다면\n클릭해 주세요.',
         '<달러구트 꿈 백화점>\n도슨트로 참여해 주신\n정신과 전문의 양재웅 선생님.\n오늘 너무 즐거운\n시간이었습니다.'
       ]

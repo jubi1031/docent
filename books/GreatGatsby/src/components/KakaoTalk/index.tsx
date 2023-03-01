@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, ReactElement } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import classNames from 'classnames'
 import { iframeMessage } from '@shared/utils'
@@ -6,13 +6,19 @@ import Icons from '../Icons'
 import AudioButton from '../AudioButton'
 
 export interface Messages {
-  user?: 'kim' | 'yang'
-  messages: (string | ReactElement)[]
+  user: 'kim' | 'yang'
+  messages: string[]
+}
+
+export interface Explanations {
+  explanations: string[]
+}
+
+interface KakaoTalkProps {
+  explanations: Explanations[]
 }
 interface KakaoTalkProps {
   messages: Messages[]
-  setMessageEnd?: Function
-  audioSrc?: string
 }
 
 const StyledAudioButton = styled(AudioButton)<{ isShowingAppbar: boolean }>`
@@ -26,37 +32,14 @@ const StyledAudioButton = styled(AudioButton)<{ isShowingAppbar: boolean }>`
 
 const KakaoTalk = (props: KakaoTalkProps) => {
   const $contents = useRef<HTMLDivElement>(null)
-  const [scrollTop, setScrollTop] = useState(0)
   const index = useRef(0)
   const [count, setCount] = useState(-1)
   const [appbar, setAppbar] = useState(false)
 
-  const [paused, setPaused] = useState<null | boolean>(null)
-  const [_, secondHalfSound] = useSound({
-    src: props.audioSrc ?? '',
-    volume: 0.5,
-    loop: false
-  })
-
   const handleClick = (event: React.MouseEvent) => {
     event.stopPropagation()
     setCount((prev) => prev + 1)
-    scrollToBottom()
-    if (paused === null && props.audioSrc) {
-      setPaused(false)
-      secondHalfSound.play()
-    }
   }
-
-  const handleToggleAudio = () => {
-    setPaused((prev) => {
-      if (prev) secondHalfSound.play()
-      else secondHalfSound.pause()
-      return !prev
-    })
-  }
-
-  let scrolling = false
 
   const scrollToBottom = () => {
     if ($contents.current === null) return
@@ -66,20 +49,6 @@ const KakaoTalk = (props: KakaoTalkProps) => {
         behavior: 'smooth'
       })
     }, 0)
-  }
-
-  setInterval(() => {
-    if (scrolling) {
-      scrolling = false
-      if (scrollTop > $contents.current.scrollTop) {
-        iframeMessage.post('toggleAppbar')
-      }
-      setScrollTop($contents.current.scrollTop)
-    }
-  }, 300)
-
-  const handleScroll = () => {
-    scrolling = true
   }
 
   useEffect(() => {
@@ -102,10 +71,9 @@ const KakaoTalk = (props: KakaoTalkProps) => {
           const own = user === 'yang'
           const avatar = own ? 'Message2.jpg' : 'Message1.png'
 
-          if (!user) return null
-
           if (i === 0) index.current = 0
           if (index.current > count) return null
+
           return (
             <Messages key={i} className={classNames({ '--own': own })}>
               <Avatar src={`/images/part2/${avatar}`} />
@@ -114,36 +82,26 @@ const KakaoTalk = (props: KakaoTalkProps) => {
                 <ul>
                   {messages.map((message, j) => {
                     if (index.current > count) return null
-                    // if (index.current === count) scrollToBottom()
+                    if (index.current === count) scrollToBottom()
                     index.current += 1
-                    if (
-                      ((!props.messages[props.messages.length - 1].user &&
-                        i === props.messages.length - 2) ||
-                        i === props.messages.length - 1) &&
-                      j === messages.length - 1 &&
-                      props.setMessageEnd
-                    )
-                      props.setMessageEnd(true)
-                    if (typeof message === 'string') {
-                      return (
-                        <Message key={j}>
-                          {j === 0 && <Icons.BalloonTail own={own} />}
-                          {message.split('\n').map((str, k) => {
-                            if (k === 0) {
-                              return <span key={k}>{str}</span>
-                            }
 
-                            return (
-                              <span key={k}>
-                                <br />
-                                {str}
-                              </span>
-                            )
-                          })}
-                        </Message>
-                      )
-                    }
-                    return <div key={j}>{message}</div>
+                    return (
+                      <Message key={j}>
+                        {j === 0 && <Icons.BalloonTail own={own} />}
+                        {message.split('\n').map((str, k) => {
+                          if (k === 0) {
+                            return <span key={k}>{str}</span>
+                          }
+
+                          return (
+                            <span key={k}>
+                              <br />
+                              {str}
+                            </span>
+                          )
+                        })}
+                      </Message>
+                    )
                   })}
                 </ul>
               </div>
@@ -152,25 +110,37 @@ const KakaoTalk = (props: KakaoTalkProps) => {
         })}
       </Contents>
 
-      {/* {!appbar && <ClickArea onClick={handleClick} />} */}
+      {!appbar && <ClickArea onClick={handleClick} />}
     </Wrapper>
   )
 }
 
 export default KakaoTalk
 
-const Wrapper = styled.div<{ bgClean?: boolean }>`
+const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
   position: relative;
   overflow-y: auto;
-  ${(props) =>
-    props.bgClean
-      ? 'background-color: rgba(0,0,0,0.2);'
-      : `background-image: url('/images/part2/C1_0.jpg');
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;`}
+
+  &::before {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+    content: '';
+
+    background-image: url('/images/part2/C1_0.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `
 
 const ClickArea = styled.div`
@@ -187,28 +157,16 @@ const Contents = styled.div`
   gap: 8px 0;
   padding: 69px 24px;
 
+  position: absolute;
   top: 0;
 
   overflow-y: auto;
+  pointer-events: none;
 
-  ::-webkit-scrollbar {
-    width: 12px;
-    -webkit-appearance: none;
-  }
-
-  ::-webkit-scrollbar:horizontal {
-    height: 12px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    border: 2px solid #ffffff;
-  }
-
-  ::-webkit-scrollbar-track {
-    border-radius: 10px;
-    background-color: #ffffff;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
   }
 `
 
@@ -304,21 +262,15 @@ const Message = styled.li`
   }
 `
 
-export const Comment = styled.div<{ notice?: boolean }>`
-  //268 80 20
-  background: rgba(0, 0, 0, 0.4);
-  color: white;
-  border-radius: 10px;
-  padding: 10px 20px;
-  width: calc(100vw - 30px);
-  font-size: 14px;
-  text-align: center;
-  margin-right: ${(props) => (props.notice ? 'unset' : `-49px`)};
-  margin-left: ${(props) => (props.notice ? 'unset' : `-49px`)};
-`
-
-export const ImageBox = styled.img`
-  width: 200px;
-  height: 200px;
+const Explanation = styled.li`
+  width: fit-content;
+  max-width: 260px;
+  padding: 14px 20px;
   border-radius: 20px;
+  background-color: black;
+  opacity: 0.8;
+
+  user-select: none;
+
+  animation: appear 0.4s ease-in-out;
 `

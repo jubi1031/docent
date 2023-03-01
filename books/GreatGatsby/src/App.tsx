@@ -7,7 +7,9 @@ import './fonts.css'
 const App = () => {
   return (
     <ConfigProvider initialPage={0}>
-      <GlobalStyles styles={`
+      {/* Global Style Sheets */}
+      <GlobalStyles
+        styles={`
         body {
           position: fixed;
           left: 0;
@@ -22,7 +24,8 @@ const App = () => {
           overscroll-behavior-y: contain;
           background-color: #fff !important;
         }
-      `} />
+      `}
+      />
       <Parts />
     </ConfigProvider>
   )

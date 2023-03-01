@@ -8,38 +8,23 @@ import { ConfigContext } from '@/components/ConfigContext'
 import { useContext, useEffect, useState } from 'react'
 import AudioButton from '@/components/AudioButton'
 
+const ArrawIcon = () => (
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M7 11L10 8L7 5"
+      stroke="white"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+)
+
 const P1_0 = () => {
-  const { openModal, setOpenModal } = useContext(ConfigContext)
-  const [tutorial, setTutorial] = useState(false)
-  const [fixedButtonDisabled, setFixedButtonDisabled] = useState(0)
-
-  const [paused, setPaused] = useState(false)
-  const [_, secondHalfSound] = useSound({
-    src: 'sounds/P1-35.mp3',
-    volume: 0.5,
-    loop: false
-  })
-
-  const [messageEnd, setMessageEnd] = useState(false)
-
-  const handleToggleAudio = () => {
-    setPaused((prev) => {
-      if (prev) secondHalfSound.play()
-      else secondHalfSound.pause()
-      return !prev
-    })
-  }
-
-  useEffect(() => {
-    if (!openModal) {
-      setMessageEnd(false)
-    }
-  }, [openModal])
-
-  useEffect(() => {
-    secondHalfSound.stop()
-  }, [])
-
   const messages: Messages[] = [
     {
       user: 'kim',
@@ -60,7 +45,7 @@ const P1_0 = () => {
     }
   ]
 
-  return <KakaoTalk messages={messages} />
+  return <KakaoTalk messages={messages} audioSrc="sounds/P2-1.mp3" />
 }
 
 const P1_1 = () => {
@@ -95,7 +80,7 @@ const P1_1 = () => {
     }
   ]
 
-  return <KakaoTalk messages={messages} />
+  return <KakaoTalk messages={messages} audioSrc="sounds/P2-2.mp3" />
 }
 
 const P1_2 = () => {
@@ -154,7 +139,7 @@ const P1_2 = () => {
     }
   ]
 
-  return <KakaoTalk messages={messages} />
+  return <KakaoTalk messages={messages} audioSrc="sounds/P2-3.mp3" />
 }
 const P1_3 = () => {
   const messages: Messages[] = [
@@ -193,7 +178,7 @@ const P1_3 = () => {
     }
   ]
 
-  return <KakaoTalk messages={messages} />
+  return <KakaoTalk messages={messages} audioSrc="sounds/P2-4.mp3" />
 }
 const P1_4 = () => {
   const messages: Messages[] = [
@@ -218,7 +203,7 @@ const P1_4 = () => {
     }
   ]
 
-  return <KakaoTalk messages={messages} />
+  return <KakaoTalk messages={messages} audioSrc="sounds/P2-5.mp3" />
 }
 
 const P1_5 = () => {
@@ -256,7 +241,7 @@ const P1_5 = () => {
     }
   ]
 
-  return <KakaoTalk messages={messages} />
+  return <KakaoTalk messages={messages} audioSrc="sounds/P2-6.mp3" />
 }
 const P1_6 = () => {
   const messages: Messages[] = [
@@ -293,7 +278,7 @@ const P1_6 = () => {
     }
   ]
 
-  return <KakaoTalk messages={messages} />
+  return <KakaoTalk messages={messages} audioSrc="sounds/P2-7.mp3" />
 }
 
 const P1_7 = () => {
@@ -315,17 +300,28 @@ const P1_7 = () => {
     }
   ]
 
-  return <KakaoTalk messages={messages} />
+  return <KakaoTalk messages={messages} audioSrc="sounds/P2-8.mp3" />
 }
 
 const P1_8 = () => {
+  const VideoContent = () => {
+    return (
+      <VideoWrapper>
+        <Video preload="metadata" src={`/videos/content.mp4#t=0.5`} controls />
+        <VideoTitleWrapper>
+          <VideoTitle>달러구트 꿈백화점 영상보기</VideoTitle>
+          <ArrawIcon />
+        </VideoTitleWrapper>
+      </VideoWrapper>
+    )
+  }
   const messages: Messages[] = [
     {
       user: 'kim',
       messages: [
         '어떤 인물이 읽고\n어떤 시선으로 보고\n어떻게 상상하느냐에 따라\n내용과 해석이 달라질 수 \n있는 것이 바로 책인데요.',
         '화면 아래 동영상을 클릭하시면\n<달러구트 꿈 백화점>을 읽은\n스타들이 만들어낸 특별한 상상 콘텐츠를 보실 수 있습니다.',
-        <ImageBox src={`/images/part2/unrest.jpg`} />,
+        <VideoContent />,
         '수많은 상상력을 불러일으키는\n<달러구트 꿈 백화점>의\n또 다른 버전이 궁금하시다면\n클릭해 주세요.',
         '<달러구트 꿈 백화점>\n도슨트로 참여해 주신\n정신과 전문의 양재웅 선생님.\n오늘 너무 즐거운\n시간이었습니다.'
       ]
@@ -339,7 +335,39 @@ const P1_8 = () => {
     }
   ]
 
-  return <KakaoTalk messages={messages} />
+  return <KakaoTalk messages={messages} audioSrc="sounds/C-1.mp3" />
 }
+
+const VideoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 20px;
+  width: 217px;
+  overflow: hidden;
+  z-index: 1;
+`
+
+const Video = styled.video`
+  height: 120px;
+  margin-top: -4px;
+`
+
+const VideoTitleWrapper = styled.div`
+  display: flex;
+  padding: 13px 4px 13px 14px;
+  justify-content: space-between;
+`
+
+const VideoTitle = styled.div`
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  font-family: 'Apple SD Gothic Neo';
+`
+
+const Mark = styled.div`
+  margin-top: -1px;
+`
 
 export default [P1_0, P1_1, P1_2, P1_3, P1_4, P1_5, P1_6, P1_7, P1_8]

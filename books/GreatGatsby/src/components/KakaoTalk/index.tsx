@@ -1,45 +1,54 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, ReactElement } from 'react'
 import styled from 'styled-components'
 import classNames from 'classnames'
 import { iframeMessage } from '@shared/utils'
 import Icons from '../Icons'
-import AudioButton from '../AudioButton'
+import AudioButton from '@/components/AudioButton'
+import { useSound } from '@shared/hooks'
 
 export interface Messages {
-  user: 'kim' | 'yang'
-  messages: string[]
-}
-
-export interface Explanations {
-  explanations: string[]
-}
-
-interface KakaoTalkProps {
-  explanations: Explanations[]
+  user?: 'kim' | 'yang'
+  messages: (string | ReactElement)[]
 }
 interface KakaoTalkProps {
   messages: Messages[]
+  setMessageEnd?: Function
+  audioSrc?: string
 }
-
-const StyledAudioButton = styled(AudioButton)<{ isShowingAppbar: boolean }>`
-  padding: 0;
-  margin: 0;
-  top: 64px;
-  right: 16px;
-  top: ${(props) => (props.isShowingAppbar ? '64px' : '32px')};
-  position: absolute;
-`
 
 const KakaoTalk = (props: KakaoTalkProps) => {
   const $contents = useRef<HTMLDivElement>(null)
+  const [scrollTop, setScrollTop] = useState(0)
   const index = useRef(0)
   const [count, setCount] = useState(-1)
   const [appbar, setAppbar] = useState(false)
 
+  const [paused, setPaused] = useState<null | boolean>(null)
+  const [_, secondHalfSound] = useSound({
+    src: props.audioSrc ?? '',
+    volume: 0.5,
+    loop: false
+  })
+
   const handleClick = (event: React.MouseEvent) => {
     event.stopPropagation()
     setCount((prev) => prev + 1)
+    scrollToBottom()
+    if (paused === null && props.audioSrc) {
+      setPaused(false)
+      secondHalfSound.play()
+    }
   }
+
+  const handleToggleAudio = () => {
+    setPaused((prev) => {
+      if (prev) secondHalfSound.play()
+      else secondHalfSound.pause()
+      return !prev
+    })
+  }
+
+  let scrolling = false
 
   const scrollToBottom = () => {
     if ($contents.current === null) return
@@ -51,6 +60,20 @@ const KakaoTalk = (props: KakaoTalkProps) => {
     }, 0)
   }
 
+  setInterval(() => {
+    if (scrolling) {
+      scrolling = false
+      if (scrollTop > $contents.current.scrollTop) {
+        iframeMessage.post('toggleAppbar')
+      }
+      setScrollTop($contents.current.scrollTop)
+    }
+  }, 300)
+
+  const handleScroll = () => {
+    scrolling = true
+  }
+
   useEffect(() => {
     iframeMessage.receive((channel = '', payload: any) => {
       if (channel !== 'toggleAppbar') return
@@ -59,21 +82,29 @@ const KakaoTalk = (props: KakaoTalkProps) => {
   }, [])
 
   return (
-    <Wrapper>
-      <Contents ref={$contents}>
-        {/* TODO: IMPLEMENT your own paused state, onToggle action */}
-        <StyledAudioButton
-          isShowingAppbar={appbar}
-          paused={true}
-          onToggle={() => {}}
-        />
+    <Wrapper bgClean={!!props.setMessageEnd}>
+      <Contents
+        ref={$contents}
+        onClick={!appbar ? handleClick : null}
+        onScroll={handleScroll}>
+        {props.audioSrc && (
+          <AudioButton paused={paused} onToggle={handleToggleAudio} />
+        )}
+        {!props.messages[props.messages.length - 1].user && (
+          <Messages>
+            <Comment notice>
+              {props.messages[props.messages.length - 1].messages[0]}
+            </Comment>
+          </Messages>
+        )}
         {props.messages.map(({ user, messages }, i) => {
           const own = user === 'yang'
           const avatar = own ? 'Message2.jpg' : 'Message1.png'
 
+          if (!user) return null
+
           if (i === 0) index.current = 0
           if (index.current > count) return null
-
           return (
             <Messages key={i} className={classNames({ '--own': own })}>
               <Avatar src={`/images/part2/${avatar}`} />
@@ -82,26 +113,36 @@ const KakaoTalk = (props: KakaoTalkProps) => {
                 <ul>
                   {messages.map((message, j) => {
                     if (index.current > count) return null
-                    if (index.current === count) scrollToBottom()
+                    // if (index.current === count) scrollToBottom()
                     index.current += 1
-
-                    return (
-                      <Message key={j}>
-                        {j === 0 && <Icons.BalloonTail own={own} />}
-                        {message.split('\n').map((str, k) => {
-                          if (k === 0) {
-                            return <span key={k}>{str}</span>
-                          }
-
-                          return (
-                            <span key={k}>
-                              <br />
-                              {str}
-                            </span>
-                          )
-                        })}
-                      </Message>
+                    if (
+                      ((!props.messages[props.messages.length - 1].user &&
+                        i === props.messages.length - 2) ||
+                        i === props.messages.length - 1) &&
+                      j === messages.length - 1 &&
+                      props.setMessageEnd
                     )
+                      props.setMessageEnd(true)
+                    if (typeof message === 'string') {
+                      return (
+                        <Message key={j}>
+                          {j === 0 && <Icons.BalloonTail own={own} />}
+                          {message.split('\n').map((str, k) => {
+                            if (k === 0) {
+                              return <span key={k}>{str}</span>
+                            }
+
+                            return (
+                              <span key={k}>
+                                <br />
+                                {str}
+                              </span>
+                            )
+                          })}
+                        </Message>
+                      )
+                    }
+                    return <div key={j}>{message}</div>
                   })}
                 </ul>
               </div>
@@ -110,37 +151,25 @@ const KakaoTalk = (props: KakaoTalkProps) => {
         })}
       </Contents>
 
-      {!appbar && <ClickArea onClick={handleClick} />}
+      {/* {!appbar && <ClickArea onClick={handleClick} />} */}
     </Wrapper>
   )
 }
 
 export default KakaoTalk
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ bgClean?: boolean }>`
   width: 100vw;
   height: 100vh;
   position: relative;
   overflow-y: auto;
-
-  &::before {
-    width: 100%;
-    height: 100%;
-
-    display: block;
-    content: '';
-
-    background-image: url('/images/part2/C1_0.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
-
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  ${(props) =>
+    props.bgClean
+      ? 'background-color: rgba(0,0,0,0.2);'
+      : `background-image: url('/images/part2/C1_0.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;`}
 `
 
 const ClickArea = styled.div`
@@ -157,16 +186,28 @@ const Contents = styled.div`
   gap: 8px 0;
   padding: 69px 24px;
 
-  position: absolute;
   top: 0;
 
   overflow-y: auto;
-  pointer-events: none;
 
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
+  ::-webkit-scrollbar {
+    width: 12px;
+    -webkit-appearance: none;
+  }
+
+  ::-webkit-scrollbar:horizontal {
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #ffffff;
   }
 `
 
@@ -260,4 +301,23 @@ const Message = styled.li`
     position: absolute;
     top: 0;
   }
+`
+
+export const Comment = styled.div<{ notice?: boolean }>`
+  //268 80 20
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  border-radius: 10px;
+  padding: 10px 20px;
+  width: calc(100vw - 30px);
+  font-size: 14px;
+  text-align: center;
+  margin-right: ${(props) => (props.notice ? 'unset' : `-49px`)};
+  margin-left: ${(props) => (props.notice ? 'unset' : `-49px`)};
+`
+
+export const ImageBox = styled.img`
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
 `

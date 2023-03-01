@@ -2,12 +2,18 @@ import styled from 'styled-components'
 import { iframeMessage } from '@shared/utils'
 import { MIN_VIEWPORT, MAX_VIEWPORT } from '@/constants'
 import { clamp } from '@shared/utils'
-import KakaoTalk, { ImageBox, Comment, Messages } from '@/components/KakaoTalk'
+import KakaoTalk, {
+  ImageBox,
+  Comment,
+  Messages
+  // Button,
+  // Buttons
+} from '@/components/KakaoTalk'
 import { useSound } from '@shared/hooks'
 import { ConfigContext } from '@/components/ConfigContext'
 import { useContext, useEffect, useState } from 'react'
 import AudioButton from '@/components/AudioButton'
-
+//const { swiperRef, openModal, setOpenModal } = useContext(ConfigContext)
 const ArrawIcon = () => (
   <svg
     width="16"
@@ -41,6 +47,12 @@ const P1_0 = () => {
         <ImageBox src={`/images/part2/umi.png`} />,
         <ImageBox src={`/images/part2/inside.png`} />,
         '기본적으로 인간의 어떤 \n심리를 다루는, \n그래서 그거에 대해서 공감대를 \n끌어낼 수 있는 작품이었기 \n때문에 저도 몰입을 해서 볼 수 \n있었던 것 같고 공감되는 부분도 많았고 \n감명 깊었던 부분도 \n있었던 것 같습니다.'
+        /*<Buttons>
+          <Button onClick={() => swiperRef.current.slideTo(2, 0)}>
+            다음 대화로 넘어가기
+            <ArrawIcon />
+          </Button>
+        </Buttons>*/
       ]
     }
   ]
@@ -198,7 +210,7 @@ const P1_4 = () => {
         '그 고인에 대해서 우리가\n아무렇지 않게 드러낼 수\n있어야 되고,\n그 추억을 같이 갖고 있는\n사람들하고 공유할 수 있을 때\n우리는 그 상실감에서\n벗어날 수가 있게 돼요.',
         '근데 그거를 꾹꾹 눌러놓고\n열면 안되는 어떤 상자라고\n생각을 하면서 자꾸 자꾸\n치워놓기 시작을 하면,\n오히려 관련된 우울감이\n더 커질 수 밖에 없는 것 같아서\n그거를 회상하는 것도 좋고,',
 
-        '특히나 중요한 것은\n 그 추억을 같이 공유할 수 있는 사람들하고 충분히 얘기하실 수 있는\n그런 환경을 갖추는게\n제일 필요할 것 같습니다.'
+        '특히나 중요한 것은\n 그 추억을 같이 공유할 수 \n있는 사람들하고 \n충분히 얘기하실 수 있는\n그런 환경을 갖추는게\n제일 필요할 것 같습니다.'
       ]
     }
   ]

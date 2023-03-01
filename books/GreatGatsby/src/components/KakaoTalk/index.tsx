@@ -11,7 +11,7 @@ import { clamp } from '@shared/utils'
 export interface Messages {
   user?: 'kim' | 'yang'
   messages: (string | ReactElement)[]
-}
+} //| boolean
 interface KakaoTalkProps {
   messages: Messages[]
   setMessageEnd?: Function
@@ -367,7 +367,7 @@ export const ImageBox = styled.img`
   height: 200px;
   border-radius: 25px;
 `
-export const Button = styled(motion.button)`
+/*export const Button = styled.button`
   display: flex;
   align-items: center;
   font-size: 12px;
@@ -379,4 +379,12 @@ export const Button = styled(motion.button)`
   color: #fff;
   background-color: #333;
   border-radius: 4px;
-`
+  `
+
+export const Buttons = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  gap: 16px;
+`*/

@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import classNames from 'classnames'
 import { iframeMessage } from '@shared/utils'
 import Icons from '../Icons'
-import AudioButton from '@/components/AudioButton'
 import { useSound } from '@shared/hooks'
+import AudioButton from '../AudioButton'
 
 export interface Messages {
   user?: 'kim' | 'yang'
@@ -15,6 +15,14 @@ interface KakaoTalkProps {
   setMessageEnd?: Function
   audioSrc?: string
 }
+const StyledAudioButton = styled(AudioButton)<{ isShowingAppbar: boolean }>`
+  padding: 0;
+  margin: 0;
+  top: 64px;
+  right: 16px;
+  top: ${(props) => (props.isShowingAppbar ? '64px' : '32px')};
+  position: absolute;
+`
 
 const KakaoTalk = (props: KakaoTalkProps) => {
   const $contents = useRef<HTMLDivElement>(null)
@@ -319,5 +327,5 @@ export const Comment = styled.div<{ notice?: boolean }>`
 export const ImageBox = styled.img`
   width: 200px;
   height: 200px;
-  border-radius: 20px;
+  border-radius: 25px;
 `

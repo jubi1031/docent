@@ -17,6 +17,7 @@ type ModalProps = {
   onClick?: (event: React.MouseEvent) => void
   onClose?: () => void
   backdrop?: string
+  talkInside?: boolean
 }
 
 const CloseIcon = () => (
@@ -40,7 +41,8 @@ const Modal = ({
   isVisible,
   onClick,
   onClose = () => {},
-  backdrop
+  backdrop,
+  talkInside
 }: ModalProps) => {
   const [sticky, setSticky] = useState(false)
 
@@ -83,13 +85,26 @@ const Modal = ({
               <span className="sr-only">닫기</span>
             </Close>
           </Header>
-          <Body
-            onScroll={(event) => {
-              const target = event.target as HTMLElement
-              setSticky(!!target.scrollTop)
-            }}>
-            {children}
-          </Body>
+          {talkInside ? (
+            <TalkInsideBody
+              onScroll={(event) => {
+                const target = event.target as HTMLElement
+                setSticky(!!target.scrollTop)
+              }}
+              >
+              {children}
+            </TalkInsideBody>
+          ) : (
+            <Body
+              onScroll={(event) => {
+                const target = event.target as HTMLElement
+                setSticky(!!target.scrollTop)
+              }}
+              >
+              {children}
+            </Body>
+          )}
+          
         </Wrapper>
       )}
     </AnimatePresence>
@@ -137,7 +152,7 @@ const Wrapper = styled(motion.div)<{ backdrop: string }>`
 
 const Header = styled.div`
   position: relative;
-  z-index: 2;
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -164,6 +179,20 @@ const Body = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+`
+
+const TalkInsideBody = styled.div`
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  img { margin: unset!important; }
 `
 
 const Close = styled.button`

@@ -31,8 +31,8 @@ const AudioButton = (props: AudioButtonProps) => {
   }, [])
 
   useEffect(() => {
-    setVisible(props.paused || appbar)
-  }, [props.paused, appbar])
+    setVisible(appbar)
+  }, [appbar])
 
   return (
     <Wrapper
@@ -74,7 +74,6 @@ const AudioButton = (props: AudioButtonProps) => {
     </Wrapper>
   )
 }
-
 
 export default AudioButton
 

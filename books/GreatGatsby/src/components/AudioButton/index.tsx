@@ -32,8 +32,8 @@ const AudioButton = (props: AudioButtonProps) => {
   }, [])
 
   useEffect(() => {
-    setVisible(props.paused || appbar)
-  }, [props.paused, appbar])
+    setVisible(appbar)
+  }, [appbar])
 
   const className = `${classNames({
     '--visible': visible,
@@ -77,7 +77,6 @@ const AudioButton = (props: AudioButtonProps) => {
     </Wrapper>
   )
 }
-
 
 export default AudioButton
 

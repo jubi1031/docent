@@ -109,7 +109,7 @@ const Parts = () => {
           }
         }}
         initialSlide={currentPage}>
-        <SwiperSlide>
+        <SwiperSlide style={{ background: 'white', zIndex: 1000 }}>
           <Cover />
         </SwiperSlide>
         <SwiperSlide>

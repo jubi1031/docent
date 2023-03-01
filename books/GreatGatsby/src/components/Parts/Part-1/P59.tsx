@@ -6,12 +6,7 @@ import { motion } from 'framer-motion'
 import { ConfigContext } from '@/components/ConfigContext'
 import AudioButton from '@/components/AudioButton'
 import Icons from '../../Icons'
-import KakaoTalk, {
-  Explanations,
-  Messages,
-  Comment,
-  ImageBox
-} from '@/components/KakaoTalk'
+import KakaoTalk, { Messages } from '@/components/KakaoTalk'
 import { useSound } from '@shared/hooks'
 
 import FixedButton from '@/components/Modal/FixedButton'
@@ -104,11 +99,7 @@ const P59 = ({ isCurrentPage }: P59Props) => {
         onClose={handleCloseModal}
         talkInside>
         {}
-        <KakaoTalk
-          messages={messages}
-          explanations={[]}
-          setMessageEnd={setMessageEnd}
-        />
+        <KakaoTalk messages={messages} setMessageEnd={setMessageEnd} />
         <FixedButton
           disabled={!messageEnd}
           onClick={(event) => {

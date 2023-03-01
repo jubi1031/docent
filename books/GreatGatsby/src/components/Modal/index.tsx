@@ -85,26 +85,14 @@ const Modal = ({
               <span className="sr-only">닫기</span>
             </Close>
           </Header>
-          {talkInside ? (
-            <TalkInsideBody
-              onScroll={(event) => {
-                const target = event.target as HTMLElement
-                setSticky(!!target.scrollTop)
-              }}
-              >
-              {children}
-            </TalkInsideBody>
-          ) : (
-            <Body
-              onScroll={(event) => {
-                const target = event.target as HTMLElement
-                setSticky(!!target.scrollTop)
-              }}
-              >
-              {children}
-            </Body>
-          )}
-          
+          <Body
+            talkInside={talkInside}
+            onScroll={(event) => {
+              const target = event.target as HTMLElement
+              setSticky(!!target.scrollTop)
+            }}>
+            {children}
+          </Body>
         </Wrapper>
       )}
     </AnimatePresence>
@@ -152,6 +140,7 @@ const Wrapper = styled(motion.div)<{ backdrop: string }>`
 
 const Header = styled.div`
   position: relative;
+  background: #666;
   z-index: 3;
   display: flex;
   align-items: center;
@@ -163,25 +152,7 @@ const Header = styled.div`
   }
 `
 
-const Body = styled.div`
-  position: relative;
-  z-index: 2;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  font-size: 14px;
-  line-height: 24px;
-  ${clamp('font-size', [MIN_VIEWPORT, MAX_VIEWPORT, 14])};
-  ${clamp('line-height', [MIN_VIEWPORT, MAX_VIEWPORT, 24])};
-  color: #ffff;
-  overflow: auto;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`
-
-const TalkInsideBody = styled.div`
+const Body = styled.div<{ talkInside?: boolean }>`
   position: relative;
   z-index: 2;
   flex: 1;
@@ -192,7 +163,18 @@ const TalkInsideBody = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-  img { margin: unset!important; }
+  ${(props) =>
+    props.talkInside
+      ? `
+    img { margin: unset!important; }
+  `
+      : `
+    font-size: 14px;
+    line-height: 24px;
+    ${clamp('font-size', [MIN_VIEWPORT, MAX_VIEWPORT, 14])};
+    ${clamp('line-height', [MIN_VIEWPORT, MAX_VIEWPORT, 24])};
+    color: #ffff;
+  `};
 `
 
 const Close = styled.button`

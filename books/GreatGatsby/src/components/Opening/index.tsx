@@ -186,6 +186,22 @@ const Opening = ({}: OpeningProps) => {
         </Body>
       </Intro>
 
+      {/* backdrop={'/images/opening/announcer.jpg'}
+      <img src="/images/opening/doctor.jpg" width="50%" alt="" />
+      {modalContent.current === 'introducing' && (
+            <WriterDetails>
+              <strong>김해나</strong>
+              <span>아나운서</span>
+              <p>
+                2015년 인터넷스포츠방송으로 데뷔했고
+                <br />
+                2016년 TV에서 본격적으로 활동하기 시작했다.
+                <br />
+                유튜브 채널에서 &lt;라운드원&gt;랭킹쇼단독 MC를 맡기도 했다.
+              </p>
+            </WriterDetails>
+          )} */}
+
       <Modal
         backdrop={
           modalContent.current === 'greeting'
@@ -195,13 +211,7 @@ const Opening = ({}: OpeningProps) => {
         isVisible={openModal}
         onClose={handleCloseModal}
         talkInside>
-        {modalContent.current === 'greeting' && (
-          <Greeting
-            paused={paused}
-            setPaused={setPaused}
-            secondHalfSound={secondHalfSound}
-          />
-        )}
+        {modalContent.current === 'greeting' && <Greeting paused={paused} setPaused={setPaused} secondHalfSound={secondHalfSound} />}
         {modalContent.current === 'introducing' && <Introducing />}
       </Modal>
     </Wrapper>
